@@ -30,6 +30,7 @@
         'views/todo_view_project_project.xml',
         'views/todo_view_project_task.xml',
         'views/todo_view_survey_user_input.xml',
+        'views/twiliosms_send_view.xml',
         'security/todo_access_rules.xml',
         'data/project_task_type.xml',
         #'data/ir_actions_server.xml',
