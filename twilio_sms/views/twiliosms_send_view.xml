@@ -1,4 +1,3 @@
-
 <odoo>
     <record model="ir.ui.view" id="twiliosms_form">
         <field name="name">twiliosmstree</field>
