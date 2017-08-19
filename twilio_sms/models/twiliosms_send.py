@@ -11,6 +11,6 @@ from dateutil.relativedelta import relativedelta
 from twilio.rest import Client
 
 # Your Account Sid and Auth Token from twilio.com/user/account
-account_sid = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-auth_token = "your_auth_token"
+account_sid = "ACcfdf69a019ff986e66d238348c8f2211"
+auth_token = "6e93ea45699c5369a82abe937c0a789d"
 client = Client(account_sid, auth_token)
