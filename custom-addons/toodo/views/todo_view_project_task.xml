@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_project_task_inherited" model="ir.ui.view">
+			    <field name="name">Project Task form – User extension</field>
+			    <field name="model">project.task</field>
+			    <field name="inherit_id" ref="project.view_task_form2"/>
+			    <field name="arch" type="xml">
+			     	<field name="tag_ids" position="after">
+			            <field name="x_survey_id" string="Actividad" />
+			            <newline/>
+			            <!-- 
+			            <field name="x_survey_user_input_id" string="Ver actividad"/>
+			             -->
+			            <field name="x_recursive" string="Recrear tarea despues de finalizar"/>
+			        </field>
+			    </field>
+			</record>
+			
+			<record id="view_form_project_task_activities_inherited" model="ir.ui.view">
+			    <field name="name">Project Task form – User extension</field>
+			    <field name="model">project.task</field>
+			    <field name="inherit_id" ref="project.view_task_form2"/>
+			    <field name="arch" type="xml">
+			     <xpath expr="//page[1]" position="after">
+			        <page string="Ver actividades">
+			            <field name="survey_user_input_ids" string="Ver actividades" />
+			        </page>
+			    </xpath>
+			    </field>
+			</record>
+			
+		</data>
+		
+    </openerp>

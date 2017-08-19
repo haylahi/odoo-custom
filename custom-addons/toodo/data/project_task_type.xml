@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data noupdate="1">
+        <!-- delete model="project.task.type" search="[('id','>','0')]" /-->
+            <!-- Data to load -->
+            <record model="project.task.type" id="project_task_type_1">
+                <field name="name">En Preparación</field>
+                <field name="x_task_type">0</field>
+                <field name="description">En esta etapa la actividad no será enviada a campo. Es la etapa de registro y preparación de la actividad.</field>
+                <field name="sequence">50</field>
+                <!-- field name="case_default" eval="True"/-->
+            </record>
+        
+            <record model="project.task.type" id="project_task_type_2">
+                <field name="name">Pendiente de envío a campo</field>
+                <field name="x_task_type">1</field>
+                <field name="description">En esta etapa la actividad esta lista para ser enviada a campo.</field>
+                <field name="sequence">60</field>
+                <!-- field name="case_default" eval="True"/-->
+            </record>
+            
+            <record model="project.task.type" id="project_task_type_3">
+                <field name="name">En campo</field>
+                <field name="x_task_type">2</field>
+                <field name="description">En esta etapa la actividad se encuentra en campo. Disponible para ser atendida por el operador.</field>
+                <field name="sequence">70</field>
+                <!-- field name="case_default" eval="True"/-->
+            </record>
+            
+            <record model="project.task.type" id="project_task_type_4">
+                <field name="name">Retornada de campo</field>
+                <field name="x_task_type">3</field>
+                <field name="description">En esta etapa la actividad ya fue atendida en campo y finalizada por el operador o el administrador.</field>
+                <field name="sequence">80</field>
+                <!-- field name="case_default" eval="True"/-->
+            </record>
+            
+            <record model="project.task.type" id="project_task_type_5">
+                <field name="name">Finalizada</field>
+                <field name="x_task_type">4</field>
+                <field name="description">En esta etapa la actividad fue finalizada/cancelada/anulada por el administrador.</field>
+                <field name="sequence">90</field>
+                <!-- field name="case_default" eval="True"/-->
+            </record>
+            
+        </data>
+    </openerp>

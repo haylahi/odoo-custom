@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+demo_admin,Model admin access,model_demo_access_rights,petroamerica.group_manager,1,1,1,1
+demo_user,Model user access,model_demo_access_rights,petroamerica.group_user,1,0,0,0
+admin_purchase.model_purchase_order,Model admin purchase,purchase.model_purchase_order,petroamerica.group_manager,1,0,1,1
+admin_purchase.model_purchase_order_line,Model admin purchase,purchase.model_purchase_order_line,petroamerica.group_manager,1,0,1,1
+admin_stock.model_stock_move,Model admin purchase,stock.model_stock_move,petroamerica.group_manager,1,0,1,1
+admin_stock.model_stock_picking,Model admin purchase,stock.model_stock_picking,petroamerica.group_manager,1,0,0,1

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data noupdate="1">
+            <!-- Data to load -->
+            <record model="base.action.rule" id="base_action_rule_1">
+                <field name="name">Task_Update_Code_Sequence</field>
+                <field name="model_id" ref="project.model_project_task"/>
+                <field name="active" eval="True"/>
+                <field name="sequence">0</field>
+                <field name="kind">on_create</field>
+                <field name="server_action_ids" eval="[(6,0,[ref('id_server_action')])]"/>
+            </record>
+        </data>
+    </openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="id_server_action" model="ir.actions.server">
+      <field name="name">Update_Code_Task_By_Sequence</field>
+      <field name="model_id" ref="project.model_project_task"/>
+      <field name="condition">obj.x_create_source</field>
+      <field name="state">code</field>
+      <field name="code">ir_sequence_obj = self.pool.get('ir.sequence')
+code = ir_sequence_obj.get(cr, uid, 'project.task')
+id = obj.id
+project_task_obj = self.pool.get('project.task')
+project_task_obj.write(cr, uid, id, {'code': code}, context=context)</field>
+    </record>
+  </data>
+</openerp>

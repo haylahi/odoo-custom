@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <openerp>
+        <data noupdate="0">
+            <record  id="todo_task_per_user_rule" model="ir.rule">
+                <field name="name">Project Tasks only for owner </field>
+                <field name="model_id" ref="model_project_task"/>
+                <field name="perm_read" eval="True"/>
+                <field name="perm_write" eval="False"/>
+                <field name="perm_create" eval="False"/>
+                <field name="perm_unlink" eval="False"/>
+                <field name="domain_force">
+                    [('user_id','=',user.id)]
+                </field>
+            </record>
+        </data>
+    </openerp>

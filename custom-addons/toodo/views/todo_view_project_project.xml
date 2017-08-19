@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_project_project_inherited" model="ir.ui.view">
+			    <field name="name">Project form – User extension</field>
+			    <field name="model">project.project</field>
+			    <field name="inherit_id" ref="project.edit_project"/>
+			    <field name="arch" type="xml">
+			     	<field name="partner_id" position="after">
+			     		<newline/>
+			            <field name="x_survey_id" string="Actividad" />
+			        </field>
+			    </field>
+			</record>
+		</data>
+    </openerp>

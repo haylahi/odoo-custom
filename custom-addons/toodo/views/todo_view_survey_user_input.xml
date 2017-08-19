@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_survey_user_input_inherited" model="ir.ui.view">
+			    <field name="name">Survey User Input form – User extension</field>
+			    <field name="model">survey.user_input</field>
+			    <field name="inherit_id" ref="survey.survey_user_input_form"/>
+			    <field name="arch" type="xml">
+			     	<field name="survey_id" position="after">
+			            <field name="x_product_ids" string="Producto" />
+			            <newline/>
+			        </field>
+			        <field name="user_input_line_ids" position="after">
+			            <newline/>
+			            <field name="project_task_ids" string="Tarea" />
+			             
+			        </field>
+			    </field>
+			</record>
+			
+		</data>
+		
+    </openerp>
