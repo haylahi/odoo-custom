@@ -3,6 +3,9 @@
     'category': 'SMS app',
     'website': 'viki2.odoo.com',
     'author': 'Vignesh',
-    'installable': True,
-    'application': True
+    'images': ['images/main_screenshot.png'],
+    'depends': ['base'],
+    'data': [
+         'views/twiliosms_send_view.xml',
+    ]
 }
