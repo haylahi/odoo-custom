@@ -7,5 +7,7 @@
     'depends': ['base'],
     'data': [
          'views/twiliosms_send_view.xml',
-    ]
+    ],
+    'installable': True,
+    'application': True
 }
