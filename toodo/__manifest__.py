@@ -21,7 +21,7 @@
 {
     'name' : 'todoo',
     'author' : 'MYR Consultoria en Sistemas SAC',
-    'depends' : ['project','survey','contacts','project_task_code','base_action_rule'],
+    'depends' : ['base','project','survey','contacts','project_task_code','base_action_rule'],
     'category' : 'Project',
     'application' : True,
     'website': 'http://www.myrconsulting.net',
