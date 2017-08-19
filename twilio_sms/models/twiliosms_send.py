@@ -1,4 +1,3 @@
-
 ##################################    TWILIO PYTHON   ###########################################
 
 from twilio import *
@@ -77,5 +76,3 @@ class TwilioBase(models.Model):
                 print(e)
                 raise Warning("This is not a registered Number, plz verify OR register")
         return
-
-
