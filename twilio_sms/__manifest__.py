@@ -7,7 +7,7 @@
     'author': "Vignesh",
     'license': 'AGPL-3',
     'installable': True,
-    'application': False,
+    'application': True,
     'images': ['images/main_screenshot.png'],
     'depends': ['base'],
     'data': [
