@@ -41,7 +41,8 @@ class SmsMass(models.Model):
        
     @api.depends('selected_records')
     def _total_count(self):
-        self.total_count = len(self.selected_records)
+        #self.total_count = len(self.selected_records)
+        self.total_count = 3
 
     def _fail_count(self):
         self.fail_count = self.env['sms.message'].search_count([('mass_sms_id','=',self.id), ('status_code','=','failed')])
