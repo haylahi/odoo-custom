@@ -52,7 +52,7 @@
           <field name="arch" type="xml">
       	      <form>
       	          <header>
-      	              <button type="object" name="send_mass_sms" string="Send Mass SMS" attrs="{'invisible': ['|', ('mass_sms_state', '!=', 'draft'), ('message_text', '=', False)]}"/>
+      	              <button type="object" name="send_mass_sms" string="Realizar Llamadas" attrs="{'invisible': ['|', ('mass_sms_state', '!=', 'draft'), ('message_text', '=', False)]}"/>
       	              <field name="mass_sms_state" widget="statusbar"/>
       	          </header>
       	          <sheet>
