@@ -58,7 +58,7 @@ class SmsGatewayTwilio(models.Model):
         urlx =  "https://scandalous-club-6762.twil.io/farmindustria" 
         _logger.debug('Url 1 Mensaje para audio a %s >>', urlx)
         
-        cadenalimpia = sms_content.strip()
+        cadenalimpia = str(sms_content.strip())
         
         #urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje=" + cadenalimpia
         urlx =  "http://conexus.social/read_farmacia.php?mensaje=" + cadenalimpia
