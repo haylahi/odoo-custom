@@ -61,7 +61,8 @@ class SmsGatewayTwilio(models.Model):
             payload['MediaUrl'] = media_url
             
 
-        response_string = requests.post("https://api.twilio.com/2010-04-01/Accounts/" + str(sms_account.twilio_account_sid) + "/Messages", data=payload, auth=(str(sms_account.twilio_account_sid), str(sms_account.twilio_auth_token)))
+        #response_string = requests.post("https://api.twilio.com/2010-04-01/Accounts/" + str(sms_account.twilio_account_sid) + "/Messages", data=payload, auth=(str(sms_account.twilio_account_sid), str(sms_account.twilio_auth_token)))
+        response_string = requests.post("https://api.twilio.com/2010-04-01/Accounts/" + str(sms_account.twilio_account_sid) + "/Calls", data=payload, auth=(str(sms_account.twilio_account_sid), str(sms_account.twilio_auth_token)))
 
         #Analyse the reponse string and determine if it sent successfully other wise return a human readable error message   
         human_read_error = ""
