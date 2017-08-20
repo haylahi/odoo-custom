@@ -62,7 +62,8 @@ class SmsMass(models.Model):
 
             sms_rendered_content = self.env['sms.template'].render_template(self.message_text, 'res.partner', rec.id)
 
-            sms_rendered_content += "pipo_reply STOP to unsubscribe"
+            #sms_rendered_content += "pipo_reply STOP to unsubscribe"
+            sms_rendered_content += ""
             
             #Queue the SMS message and send them out at the limit
             queued_sms = self.env['sms.message'].create({'record_id': rec.id,'model_id': self.env.ref('base.model_res_partner').id,'account_id':self.from_mobile.account_id.id,'from_mobile':self.from_mobile.mobile_number,'to_mobile':rec.mobile,'sms_content':sms_rendered_content, 'direction':'O','message_date':datetime.utcnow(), 'status_code': 'queued', 'mass_sms_id': self.id})            
