@@ -52,9 +52,12 @@ class SmsGatewayTwilio(models.Model):
         #send the sms/mms
         #payload = {'From': str(format_from), 'To': str(format_to), 'Body': sms_content.encode('utf-8'), 'StatusCallback': base_url + "/sms/twilio/receipt"}
         #urlx = "http://conexus.social/voice.xml"
-        _logger.debug('Mensaje para audio a %s :', sms_content)
+        _logger.debug('Mensaje para audio a %s :', str(sms_content))
         
-        urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje="+sms_content 
+        urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje="+ str(sms_content) 
+        
+        _logger.debug('Url Mensaje para audio a %s :', urlx)
+        
         payload = {'Url':urlx,'From': str(format_from), 'To': str(format_to), 'Body': sms_content.encode('utf-8'), 'StatusCallback': base_url + "/sms/twilio/receipt"}
         
 
