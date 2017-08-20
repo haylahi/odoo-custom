@@ -62,12 +62,13 @@ class SmsGatewayTwilio(models.Model):
         cadenalimpia = cadenalimpia
         if " " in cadenalimpia: cadenalimpia.replace(" ", "")
         
+        _logger.debug('Url 2 Mensaje para audio a %s >>', urlx)
         #urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje=" + cadenalimpia
         urlx =  "http://conexus.social/read_farmacia.php?mensaje=" + cadenalimpia
         
         
         #urlx = urlx.encode('utf-8')  
-        #_logger.debug('Url 2 Mensaje para audio a %s >>', urlx)
+        
         
         payload = {'Url':urlx,'From': str(format_from), 'To': str(format_to), 'Body': sms_content.encode('utf-8'), 'StatusCallback': base_url + "/sms/twilio/receipt"}
         
