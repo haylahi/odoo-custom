@@ -12,7 +12,7 @@ class SmsMessage(models.Model):
     by_partner_id = fields.Many2one('res.partner', string="By")
     from_mobile = fields.Char(string="From Mobile", readonly=True)
     to_mobile = fields.Char(string="To Mobile", readonly=True)
-    sms_content = fields.Text(string="SMS Message", readonly=True)
+    sms_content = fields.Char(string="SMS Message", readonly=True)
     record_name = fields.Char(string="Record Name", compute="_compute_record_name")
     status_string = fields.Char(string="Response String", readonly=True)
     status_code = fields.Selection((('RECEIVED','Received'), ('failed', 'Failed to Send'), ('queued', 'Queued'), ('successful', 'Sent'), ('DELIVRD', 'Delivered'), ('EXPIRED','Timed Out'), ('UNDELIV', 'Undelivered')), string='Delivary State', readonly=True)

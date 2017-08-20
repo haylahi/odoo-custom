@@ -10,7 +10,7 @@ class SmsMass(models.Model):
     
     from_mobile = fields.Many2one('sms.number', string="From Mobile")
     selected_records = fields.Many2many('res.partner', string="Selected Records", domain="[('sms_opt_out','=',False),('mobile','!=','')]")
-    message_text = fields.Text(string="Message Text")
+    message_text = fields.Char(string="Message Text")
     total_count = fields.Integer(string="Total", compute="_total_count")
     fail_count = fields.Integer(string="Failed", compute="_fail_count")
     queue_count = fields.Integer(string="Queue", compute="_queue_count")
