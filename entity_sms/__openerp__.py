@@ -29,7 +29,7 @@
         'esms_settings.xml',
     ],
     'demo': [],
-    'depends': ['web', 'crm','marketing'],
+    'depends': ['web', 'crm','marketing_campaign'],
     'images':[
     'static/description/2.jpg',
     'static/description/1.png',
