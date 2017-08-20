@@ -57,7 +57,7 @@ class SmsGatewayTwilio(models.Model):
         urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje=yapeeeeeeeeeeeeeeeeeee" 
         _logger.debug('Url 1 Mensaje para audio a %s :', urlx)
         
-        urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje=" + str(sms_content).strip()  
+        urlx =  "https://scandalous-club-6762.twil.io/farmindustria?mensaje=" + sms_content.encode('utf-8').strip()  
         _logger.debug('Url 2 Mensaje para audio a %s :', urlx)
         
         payload = {'Url':urlx,'From': str(format_from), 'To': str(format_to), 'Body': sms_content.encode('utf-8'), 'StatusCallback': base_url + "/sms/twilio/receipt"}
