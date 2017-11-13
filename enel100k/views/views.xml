@@ -1,0 +1,175 @@
+<openerp>
+	<data>
+
+		<!-- Creando formulario -->
+		<record id="enel100k.form" model="ir.ui.view">
+			<field name="name">enel100k form</field>
+			<field name="model">enel100k.enel100k</field>
+			<field name="arch" type="xml">
+				<form>
+					<header><!-- Buttons and status widget -->
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<div name="div_suministro" class="o_row">
+								<h1>
+									<label for="suministro" />
+									<field name="suministro" placeholder="Número de suministro" />
+								</h1>
+							</div>
+						</div>
+						<group name="group_top">
+							<group name="group_left">
+
+								<label for="dni" />
+								<div name="div_dni" class="o_row">
+									<field name="dni" widget="mask" data-inputmask-mask="99999999"
+										placeholder="Registrar el DNI" />
+								</div>
+
+								<label for="nombres" />
+								<div name="div_nombres" class="o_row">
+									<field name="nombres" placeholder="Registrar los nombres" />
+								</div>
+
+								<label for="apellido_paterno" />
+								<div name="div_apellido_paterno" class="o_row">
+									<field name="apellido_paterno" placeholder="Registrar el apellido paterno" />
+								</div>
+
+								<label for="apellido_materno" />
+								<div name="div_apellido_materno" class="o_row">
+									<field name="apellido_materno" placeholder="Registrar el apellido materno" />
+								</div>
+
+								<label for="edad" />
+								<div name="div_edad" class="o_row">
+									<field name="edad" widget="mask" data-inputmask-mask="99"
+										placeholder="Registrar la edad" />
+								</div>
+							</group>
+							<group name="group_right">
+
+								<label for="email" />
+								<div name="div_email" class="o_row">
+									<field name="email" widget="mask_regex"
+										data-inputmask-regex="[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}"
+										placeholder="Registrar el correo electrónico" />
+								</div>
+
+								<label for="telefono_fijo" />
+								<div name="div_telefono_fijo" class="o_row">
+									<field name="telefono_fijo" widget="mask"
+										data-inputmask-mask="999-9999" removemaskonsubmit="True"
+										placeholder="Registrar el teléfono fijo" />
+								</div>
+
+								<label for="telefono_celular" />
+								<div name="div_telefono_celular" class="o_row">
+									<field name="telefono_celular" widget="mask"
+										data-inputmask-mask="999-999-999" removemaskonsubmit="True"
+										placeholder="Registrar el teléfono celular" />
+								</div>
+
+								<label for="distrito" />
+								<div name="div_distrito" class="o_row">
+									<field name="distrito" placeholder="Registrar el distrito de residencia" />
+								</div>
+
+								<label for="direccion" />
+								<div name="div_direccion" class="o_row">
+									<field name="direccion" placeholder="Registrar la dirección residencial" />
+								</div>
+
+							</group>
+						</group>
+
+						<label for="user_id" />
+						<div name="div_user_id" class="o_row">
+							<field name="user_id" placeholder="Encuestador" value="create_uid" />
+						</div>
+						<!-- Form content -->
+
+
+					</sheet>
+					<!-- History and communication: -->
+					<!-- 
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+					 -->
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Formulario Lista -->
+
+		<record model="ir.ui.view" id="enel100k.list">
+			<field name="name">enel100k list</field>
+			<field name="model">enel100k.enel100k</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="suministro" />
+					<field name="nombres" />
+					<field name="apellido_paterno" />
+					<field name="apellido_materno" />
+					<field name="dni" />
+					<field name="telefono_fijo" />
+					<field name="telefono_celular" />
+					<field name="email" />
+					<field name="edad" />
+					<field name="distrito" />
+					<field name="user_id" />
+					<field name="create_date" />
+				</tree>
+			</field>
+		</record>
+
+
+
+		<!-- actions opening views on models -->
+
+		<record model="ir.actions.act_window" id="enel100k.action_window">
+			<field name="name">Lista de encuestas</field>
+			<field name="res_model">enel100k.enel100k</field>
+			<field name="view_mode">tree,form,view</field>
+			<field name="limit">100</field>
+		</record>
+
+
+		<!-- server action to the one above -->
+
+		<record model="ir.actions.server" id="enel100k.action_server">
+			<field name="name">Informes</field>
+			<field name="model_id" ref="model_enel100k_enel100k" />
+			<field name="code">
+				action = {
+				"type": "ir.actions.act_window",
+				"view_mode": "tree,form",
+				"res_model": self._name,
+				}
+			</field>
+		</record>
+
+
+		<!-- Top menu item -->
+
+		<menuitem name="Encuestas" id="enel100k.menu_root" />
+
+		<!-- menu categories -->
+
+		<menuitem name="Encuestas" id="enel100k.menu_1" parent="enel100k.menu_root" />
+		<!-- <menuitem name="Informes" id="enel100k.menu_2" parent="enel100k.menu_root" 
+			/> -->
+
+		<!-- actions -->
+
+		<menuitem name="Lista de encuestas" id="enel100k.menu_1_list"
+			parent="enel100k.menu_1" action="enel100k.action_window" />
+		<!-- <menuitem name="Consolidado" id="enel100k" parent="enel100k.menu_2" 
+			action="enel100k.action_server" /> -->
+
+	</data>
+</openerp>
