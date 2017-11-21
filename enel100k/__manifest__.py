@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail','inputmask_widget'],
+    'depends': ['base','mail','inputmask_widget','web_export_view'],
 
     # always loaded
     'data': [
