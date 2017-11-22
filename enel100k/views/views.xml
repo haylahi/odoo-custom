@@ -86,7 +86,12 @@
 
 						<label for="write_uid" />
 						<div name="div_write_uid" class="o_row">
-							<field name="write_uid" placeholder="Encuestador" value="write_uid" />
+							<field name="write_uid" placeholder="Encuestado por" value="write_uid" string="Encuestado por" />
+						</div>
+						
+						<label for="create_uid" />
+						<div name="div_create_uid" class="o_row">
+							<field name="create_uid" placeholder="Creado por" value="create_uid" string="Creado por" />
 						</div>
 						
 						
@@ -123,7 +128,8 @@
 					<field name="email" />
 					<field name="edad" />
 					<field name="distrito" />
-					<field name="write_uid" placeholder="Encuestador" />
+					<field name="write_uid" string="Encuestado por" />
+					<field name="create_uid" string="Creado por" />
 					<field name="create_date" />
 				</tree>
 			</field>
