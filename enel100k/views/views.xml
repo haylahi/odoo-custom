@@ -123,7 +123,7 @@
 					<field name="email" />
 					<field name="edad" />
 					<field name="distrito" />
-					<field name="user_id" />
+					<field name="write_uid" />
 					<field name="create_date" />
 				</tree>
 			</field>
