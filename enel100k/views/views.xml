@@ -84,10 +84,12 @@
 							</group>
 						</group>
 
-						<label for="user_id" />
-						<div name="div_user_id" class="o_row">
-							<field name="user_id" placeholder="Encuestador" value="create_uid" />
+						<label for="write_uid" />
+						<div name="div_write_uid" class="o_row">
+							<field name="write_uid" placeholder="Encuestador" value="write_uid" />
 						</div>
+						
+						
 						<!-- Form content -->
 
 

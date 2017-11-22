@@ -17,7 +17,7 @@ class enel100k(models.Model):
      distrito = fields.Char(string='Distrito',required=True,help='Registrar el distrito de residencia')
      direccion = fields.Char(string='Dirección residencial',required=True,help='Registrar la dirección residencial')
      image = fields.Binary('Image')
-     user_id = fields.Many2one('res.users', 'Encuestador')
+     
     
      #value = fields.Integer()
      #value2 = fields.Float(compute="_value_pc", store=True)
