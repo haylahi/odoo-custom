@@ -60,14 +60,14 @@
 								<label for="telefono_fijo" />
 								<div name="div_telefono_fijo" class="o_row">
 									<field name="telefono_fijo" widget="mask"
-										data-inputmask-mask="999-9999" removemaskonsubmit="True"
+										data-inputmask-mask="9999999" removemaskonsubmit="True"
 										placeholder="Registrar el teléfono fijo" />
 								</div>
 
 								<label for="telefono_celular" />
 								<div name="div_telefono_celular" class="o_row">
 									<field name="telefono_celular" widget="mask"
-										data-inputmask-mask="999-999-999" removemaskonsubmit="True"
+										data-inputmask-mask="999999999" removemaskonsubmit="True"
 										placeholder="Registrar el teléfono celular" />
 								</div>
 
