@@ -1,0 +1,354 @@
+<openerp>
+	<data>
+
+		<!-- Creando formulario -->
+		<record id="alfalaval.form" model="ir.ui.view">
+			<field name="name">vibracionregular form</field>
+			<field name="model">vibracionregular</field>
+			<field name="arch" type="xml">
+				<form>
+					<header><!-- Buttons and status widget -->
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<div name="div_cliente" class="o_row">
+								<h1>
+									<label for="cliente" />
+									<field name="cliente" placeholder="Datos del cliente" />
+								</h1>
+							</div>
+						</div>
+						<group name="group_top">
+							<group name="group_left">
+
+								<label for="codigocliente" />
+								<div name="div_codigocliente" class="o_row">
+									<field name="codigocliente" widget="mask"
+										data-inputmask-mask="99999999" placeholder="Código del cliente" />
+								</div>
+
+								<label for="numeroos" />
+								<div name="div_numeroos" class="o_row">
+									<field name="numeroos" placeholder="OS No"
+										data-inputmask-mask="99999999" />
+								</div>
+
+								<label for="equipo" />
+								<div name="div_equipo" class="o_row">
+									<field name="equipo" placeholder="Equipo" />
+								</div>
+
+
+							</group>
+							<group name="group_right">
+
+								<label for="prodn" />
+								<div name="div_prodn" class="o_row">
+									<field name="prodn" placeholder="Prod No" />
+								</div>
+
+								<label for="flujo" />
+								<div name="div_flujo" class="o_row">
+									<field name="flujo" widget="mask" data-inputmask-mask="999.99"
+										placeholder="Flujo m3/h" />
+								</div>
+								<label for="precision" />
+								<div name="div_precision" class="o_row">
+									<field name="precision" placeholder="Registrar la precisión" />
+								</div>
+							</group>
+						</group>
+						<group name="group_image">
+							<div id="id_immagine" align="center" style="width: 100%; height: 100%;">
+								<img src="alfalaval/static/image_form/vibraciones_regulares.png" />
+							</div>
+						</group>
+
+						<group name="group_midle">
+
+							<table style='width:100%;' border='1'>
+								<tr>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="1" />
+									</th>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="2" />
+									</th>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="3" />
+									</th>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="4" />
+									</th>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="5" />
+									</th>
+									<th style='width:16%; font-weight:bold; text-align: center;'>
+										<label string="6" />
+									</th>
+								</tr>
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm1" default_focus="1" placeholder="En vacío .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm2" default_focus="2" placeholder="En vacío .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm3" default_focus="3" placeholder="En vacío .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm4" default_focus="4" placeholder="En vacío .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm5" default_focus="5" placeholder="En vacío .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvaciomm6" default_focus="6" placeholder="En vacío .mm/s" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge1" default_focus="1" placeholder="En vacío .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge2" default_focus="2" placeholder="En vacío .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge3" default_focus="3" placeholder="En vacío .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge4" default_focus="4" placeholder="En vacío .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge5" default_focus="5" placeholder="En vacío .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrvacioge6" default_focus="6" placeholder="En vacío .gE" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm1" default_focus="1" placeholder="En agua .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm2" default_focus="2" placeholder="En agua .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm3" default_focus="3" placeholder="En agua .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm4" default_focus="4" placeholder="En agua .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm5" default_focus="5" placeholder="En agua .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguamm6" default_focus="6" placeholder="En agua .mm/s" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage1" default_focus="1" placeholder="En agua .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage2" default_focus="2" placeholder="En agua .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage3" default_focus="3" placeholder="En agua .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage4" default_focus="4" placeholder="En agua .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage5" default_focus="5" placeholder="En agua .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mraguage6" default_focus="6" placeholder="En agua .gE" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm1" default_focus="1" placeholder="En carga .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm2" default_focus="2" placeholder="En carga .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm3" default_focus="3" placeholder="En carga .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm4" default_focus="4" placeholder="En carga .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm5" default_focus="5" placeholder="En carga .mm/s" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargamm6" default_focus="6" placeholder="En carga .mm/s" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage1" default_focus="1" placeholder="En carga .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage2" default_focus="2" placeholder="En carga .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage3" default_focus="3" placeholder="En carga .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage4" default_focus="4" placeholder="En carga .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage5" default_focus="5" placeholder="En carga .gE" />
+									</td>
+									<td style="padding-left: 10px;padding-right: 10px;">
+										<field name="mrcargage6" default_focus="6" placeholder="En carga .gE" />
+									</td>
+								</tr>
+								
+							</table>
+
+						</group>
+
+						<group name="group_bottom">
+							<label for="observacion" />
+							<div name="div_observacion" class="o_row">
+								<field name="observacion" placeholder="Observación" style="height:200px" />
+							</div>
+
+							<label for="valormaximo" />
+							<div name="div_valormaximo" class="o_row">
+								<field name="valormaximo" placeholder="Valor máximo medido en mm/s" />
+							</div>
+
+							<label for="firmafieldservice" />
+							<div name="div_firmafieldservice" class="o_row">
+								<field name="firmafieldservice" widget="image" />
+							</div>
+
+							<label for="firmacliente" />
+							<div name="div_firmacliente" class="o_row">
+								<field name="firmacliente" widget="image" />
+							</div>
+
+
+						</group>
+
+						<label for="write_uid" />
+						<div name="div_write_uid" class="o_row">
+							<field name="write_uid" placeholder="Encuestado por" value="write_uid"
+								string="Encuestado por" />
+						</div>
+
+						<label for="create_uid" />
+						<div name="div_create_uid" class="o_row">
+							<field name="create_uid" placeholder="Creado por" value="create_uid"
+								string="Creado por" />
+						</div>
+
+
+						<!-- Form content -->
+
+
+					</sheet>
+					<!-- History and communication: -->
+					<!-- <div class="oe_chatter"> <field name="message_follower_ids" widget="mail_followers" 
+						/> <field name="message_ids" widget="mail_thread" /> </div> -->
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Formulario Lista -->
+
+		<record model="ir.ui.view" id="alfalaval.list">
+			<field name="name">vibracionregular list</field>
+			<field name="model">vibracionregular</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="cliente" />
+					<field name="codigocliente" />
+					<field name="numeroos" />
+					<field name="equipo" />
+					<field name="prodn" />
+					<field name="flujo" />
+					<field name="precision" />
+					<field name="write_uid" string="Actualizado por" />
+					<field name="create_uid" string="Creado por" />
+					<field name="create_date" />
+				</tree>
+			</field>
+		</record>
+
+
+
+		<!-- actions opening views on models -->
+
+		<record model="ir.actions.act_window" id="alfalaval.action_window_regulares">
+			<field name="name">Vibraciones Regulares</field>
+			<field name="res_model">vibracionregular</field>
+			<field name="view_mode">tree,form,view</field>
+			<field name="limit">100</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="alfalaval.action_window_temperatura">
+			<field name="name">Vibraciones mm/s y Temperatura</field>
+			<field name="res_model">vibracionregular</field>
+			<field name="view_mode">tree,form,view</field>
+			<field name="limit">100</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="alfalaval.action_window_informes">
+			<field name="name">Informe de visita</field>
+			<field name="res_model">vibracionregular</field>
+			<field name="view_mode">tree,form,view</field>
+			<field name="limit">100</field>
+		</record>
+
+
+		<!-- server action to the one above -->
+
+		<record model="ir.actions.server" id="alfalaval.action_server">
+			<field name="name">Informes</field>
+			<field name="model_id" ref="model_vibracionregular" />
+			<field name="code">
+				action = {
+				"type": "ir.actions.act_window",
+				"view_mode": "tree,form",
+				"res_model": self._name,
+				}
+			</field>
+		</record>
+
+
+		<!-- Top menu item -->
+
+		<menuitem name="Servicio Técnico" id="alfalaval.menu_root" />
+
+		<!-- menu categories -->
+
+		<menuitem name="Medidas de Vibración" id="alfalaval.vibracionregular"
+			parent="alfalaval.menu_root" />
+		<!-- <menuitem name="Informes" id="alfalaval.vibracionregular" parent="alfalaval.menu_root" 
+			/> -->
+
+		<!-- actions -->
+
+		<menuitem name="Vibraciones Regulares" id="alfalaval.menu_1_list_regulares"
+			parent="alfalaval.vibracionregular" action="alfalaval.action_window_regulares" />
+
+		<menuitem name="Vibraciones mm/s y Temperatura" id="alfalaval.menu_2_list_temperatura"
+			parent="alfalaval.vibracionregular" action="alfalaval.action_window_temperatura" />
+
+		<menuitem name="Informe de visita" id="alfalaval.menu_3_list_informes"
+			parent="alfalaval.vibracionregular" action="alfalaval.action_window_informes" />
+
+	</data>
+</openerp>
