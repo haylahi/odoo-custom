@@ -27,7 +27,7 @@
     'summary': 'Tablas y requisitos mínimos para la factura electrónica.',
     'license': 'AGPL-3',
     'contributors': [
-        'Leonidas Pezo <leonidas@odooperu.pe>',
+        'Leonidas Pezo <leonidas@odooperu.pe>','Ricardo Livelli <ricardo.livelli@myrconsulting.net>'
     ],
     'description' : """
 Factura electronica - Base.

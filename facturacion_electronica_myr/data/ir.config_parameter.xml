@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <openerp>
-	<data noupdate="1">
-	    <record id="myid_myr_0" model="ir.config_parameter">
-	        <field name="key">localizacion.myr</field>
-	        <field name="value">True</field>
-	    </record>
+	<data noupdate="0">
 	    <record id="myid_myr_1" model="ir.config_parameter">
 	        <field name="key">facturacion_electronica.myr</field>
 	        <field name="value">True</field>
+	    </record>
+	    <record id="myid_myr_2" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.ruta</field>
+	        <field name="value">D:\data0\facturador\DATA\</field>
 	    </record>
 	 </data>
 </openerp>

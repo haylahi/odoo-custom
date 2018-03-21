@@ -122,3 +122,34 @@ class einvoice_catalog_16(models.Model):
             l_name +=  table.name
             result.append((table.id, l_name ))
         return result
+    
+class einvoice_catalog_17(models.Model):
+    _name = "einvoice.catalog.17"
+    _description = 'Codigos - Tipo de Operacion'
+
+    code = fields.Char(string='Codigo', size=4, index=True, required=True)
+    name = fields.Char(string='Descripcion', size=128, index=True, required=True)
+    
+    @api.multi
+    @api.depends('code', 'name')
+    def name_get(self):
+        result = []
+        for table in self:
+            l_name = table.code and table.code + ' - ' or ''
+            l_name +=  table.name
+            result.append((table.id, l_name ))
+        return result
+
+class product_uom(models.Model):
+    _inherit = 'product.uom'
+    x_code = fields.Char(string='Codigo', size=3, index=True)
+    
+    @api.multi
+    @api.depends('x_code', 'name')
+    def name_get(self):
+        result = []
+        for table in self:
+            l_name = table.x_code and table.x_code + ' - ' or ''
+            l_name +=  table.name
+            result.append((table.id, l_name ))
+        return result

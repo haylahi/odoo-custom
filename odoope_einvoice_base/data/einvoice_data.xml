@@ -103,5 +103,111 @@
         <record id="e16_01" model="einvoice.catalog.16"><field name="code">01</field><field name="name">Precio unitario (incluye el IGV)</field></record>
         <record id="e16_02" model="einvoice.catalog.16"><field name="code">02</field><field name="name">Valor referencial unitario en operaciones no onerosas</field></record>
 
+		<!-- Catalogo 17  - Códigos – Tipo de Operacion  -->
+        <record id="e17_01" model="einvoice.catalog.17"><field name="code">01</field><field name="name">Venta Interna</field></record>
+        <record id="e17_02" model="einvoice.catalog.17"><field name="code">02</field><field name="name">Exportación</field></record>
+        <record id="e17_03" model="einvoice.catalog.17"><field name="code">03</field><field name="name">No domiciliados</field></record>
+        <record id="e17_04" model="einvoice.catalog.17"><field name="code">04</field><field name="name">Venta Interna - Anticipos</field></record>
+        <record id="e17_05" model="einvoice.catalog.17"><field name="code">05</field><field name="name">Venta Itinerante</field></record>
+        
+        <!-- Catalogo 03  - Códigos – Unidades de Medida  -->
+        <delete id="product.product_uom_cm" model="product.uom"/>
+        <record id="product.product_uom_cm" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">100</field><field name="uom_type">reference</field>	
+        <field name="name">cm</field><field name="x_code">CMT</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_qt" model="product.uom"/>
+        <record id="product.product_uom_qt" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">1.05669</field><field name="uom_type">smaller</field>	
+        <field name="name">cuarto(s) de galón</field><field name="x_code">1G4</field><field name="category_id">5</field></record>
+        
+        <delete id="product.product_uom_day" model="product.uom"/>
+        <record id="product.product_uom_day" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">1</field><field name="uom_type">reference</field>	
+        <field name="name">Día(s)</field><field name="x_code">DAY</field><field name="category_id">3</field></record>
+        
+        <delete id="product.product_uom_dozen" model="product.uom"/>
+        <record id="product.product_uom_dozen" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">0.83333333</field><field name="uom_type">bigger</field>	
+        <field name="name">Docena(s)</field><field name="x_code">DZN</field><field name="category_id">1</field></record>
+        
+        <delete id="product.product_uom_floz" model="product.uom"/>
+        <record id="product.product_uom_floz" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">33.814</field><field name="uom_type">smaller</field>	
+        <field name="name">fl oz(s)</field><field name="x_code">FON</field><field name="category_id">5</field></record>
+        
+        
+        <delete id="product.product_uom_gram" model="product.uom"/>
+        <record id="product.product_uom_gram" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">1000</field><field name="uom_type">smaller</field>	
+        <field name="name">g</field><field name="x_code">GRM</field><field name="category_id">2</field></record>
+        
+        <delete id="product.product_uom_gal" model="product.uom"/>
+        <record id="product.product_uom_gal" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">0.264172176858</field><field name="uom_type">bigger</field>	
+        <field name="name">galón(es)</field><field name="x_code">EQ</field><field name="category_id">5</field></record>
+        
+        <!--delete id="product.product_uom_hour" model="product.uom"/-->
+        <record id="product.product_uom_hour" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">8</field><field name="uom_type">smaller</field>	
+        <field name="name">Hora(s)</field><field name="x_code">HUR</field><field name="category_id">3</field></record>
+        
+        <delete id="product.product_uom_kgm" model="product.uom"/>
+        <record id="product.product_uom_kgm" model="product.uom">
+        <field name="rounding">0.001</field><field name="factor">1</field><field name="uom_type">reference</field>	
+        <field name="name">kg</field><field name="x_code">KGM</field><field name="category_id">2</field></record>
+        
+        <delete id="product.product_uom_km" model="product.uom"/>
+        <record id="product.product_uom_km" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">0.001</field><field name="uom_type">bigger</field>	
+        <field name="name">km</field><field name="x_code">KTM</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_lb" model="product.uom"/>
+        <record id="product.product_uom_lb" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">2.20462</field><field name="uom_type">smaller</field>	
+        <field name="name">libra(s)</field><field name="x_code">LBR</field><field name="category_id">2</field></record>
+        
+        <delete id="product.product_uom_litre" model="product.uom"/>
+        <record id="product.product_uom_litre" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">1</field><field name="uom_type">reference</field>	
+        <field name="name">Litro(s)</field><field name="x_code">LTR</field><field name="category_id">5</field></record>
+        
+        <delete id="product.product_uom_meter" model="product.uom"/>
+        <record id="product.product_uom_meter" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">1</field><field name="uom_type">reference</field>	
+        <field name="name">m</field><field name="x_code">MET</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_mile" model="product.uom"/>
+        <record id="product.product_uom_mile" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">0.00062137273665</field><field name="uom_type">bigger</field>	
+        <field name="name">milla(s)</field><field name="x_code">SMI</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_oz" model="product.uom"/>
+        <record id="product.product_uom_oz" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">35.274</field><field name="uom_type">smaller</field>	
+        <field name="name">onza(s)</field><field name="x_code">ONZ</field><field name="category_id">2</field></record>
+        
+        <delete id="product.product_uom_foot" model="product.uom"/>
+        <record id="product.product_uom_foot" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">3.28084</field><field name="uom_type">smaller</field>	
+        <field name="name">pie(s)</field><field name="x_code">FOT</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_inch" model="product.uom"/>
+        <record id="product.product_uom_inch" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">39.3701</field><field name="uom_type">smaller</field>	
+        <field name="name">pulgada(s)</field><field name="x_code">INH</field><field name="category_id">4</field></record>
+        
+        <delete id="product.product_uom_ton" model="product.uom"/>
+        <record id="product.product_uom_ton" model="product.uom">
+        <field name="rounding">0.01</field><field name="factor">0.001</field><field name="uom_type">bigger</field>	
+        <field name="name">t</field><field name="x_code">TNE</field><field name="category_id">2</field></record>
+        
+        <!--delete id="product.product_uom_unit" model="product.uom"/-->
+        <record id="product.product_uom_unit" model="product.uom">
+        <field name="rounding">0.001</field><field name="factor">1</field><field name="uom_type">reference</field>	
+        <field name="name">Unidad(es)</field><field name="x_code">NIU</field><field name="category_id">1</field></record>
+        
+
+
     </data>
 </openerp>

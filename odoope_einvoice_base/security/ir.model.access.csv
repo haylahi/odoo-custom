@@ -6,3 +6,5 @@ access_einvoice_catalog_08,einvoice.catalog.08,model_einvoice_catalog_08,account
 access_einvoice_catalog_09,einvoice.catalog.09,model_einvoice_catalog_09,account.group_account_manager,1,1,1,1
 access_einvoice_catalog_10,einvoice.catalog.10,model_einvoice_catalog_10,account.group_account_manager,1,1,1,1
 access_einvoice_catalog_16,einvoice.catalog.16,model_einvoice_catalog_16,account.group_account_manager,1,1,1,1
+access_einvoice_catalog_17,einvoice.catalog.17,model_einvoice_catalog_17,account.group_account_manager,1,1,1,1
+access_einvoice_product_uom,product.uom,model_product_uom,account.group_account_manager,1,1,1,1
