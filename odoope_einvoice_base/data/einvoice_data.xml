@@ -207,7 +207,48 @@
         <field name="rounding">0.001</field><field name="factor">1</field><field name="uom_type">reference</field>	
         <field name="name">Unidad(es)</field><field name="x_code">NIU</field><field name="category_id">1</field></record>
         
+		<!-- Catalogo 12 - Documentos Relacionados Tributarios -->
+        <record id="e12_4" model="einvoice.catalog.12"><field name="code">04</field><field name="name">Ticket de Salud - ENAPU</field></record>
+        <record id="e12_5" model="einvoice.catalog.12"><field name="code">05</field><field name="name">Codigo SCOP</field></record>
+        <record id="e12_9" model="einvoice.catalog.12"><field name="code">99</field><field name="name">Otros</field></record>
+        <record id="e12_1" model="einvoice.catalog.12"><field name="code">01</field><field name="name">Factura - emitida para corregir error en el RUC</field></record>
+        <record id="e12_2" model="einvoice.catalog.12"><field name="code">02</field><field name="name">Factura - emitida por anticipos</field></record>
+        <record id="e12_3" model="einvoice.catalog.12"><field name="code">03</field><field name="name">Boleta de Venta - emitida por anticipos</field></record>
+    
+        <!-- Catalogo 15 - Elementos Adicionales en la Factura/Boleta Electronica -->
+        <record id="e15_1000" model="einvoice.catalog.15"><field name="code">1000</field><field name="name">Monto en Letras</field></record>
+        <record id="e15_1002" model="einvoice.catalog.15"><field name="code">1002</field><field name="name">Leyenda TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE</field></record>
+        <record id="e15_2000" model="einvoice.catalog.15"><field name="code">2000</field><field name="name">Leyenda COMPROBANTE DE PERCEPCION</field></record>
+        <record id="e15_2001" model="einvoice.catalog.15"><field name="code">2001</field><field name="name">Leyenda BIENES TRANSFERIDOS EN LA AMAZONIA REGION SELVA PARA SER CONSUMIDOS EN LA MISMA</field></record>
+        <record id="e15_2002" model="einvoice.catalog.15"><field name="code">2002</field><field name="name">Leyenda SERVICIOS PRESTADOS EN LA AMAZONIA REGION SELVA PARA SER CONSUMIDOS EN LA MISMA</field></record>
+        <record id="e15_2003" model="einvoice.catalog.15"><field name="code">2003</field><field name="name">Leyenda CONTRATOS DE CONSTRUCCION EJECUTADOS EN LA AMAZONIA REGION SELVA</field></record>
+        <record id="e15_2004" model="einvoice.catalog.15"><field name="code">2004</field><field name="name">Leyenda Agencia de Viaje - Paquete Turistico</field></record> 
+		<record id="e15_3000" model="einvoice.catalog.15"><field name="code">3000</field><field name="name">Detracciones: CODIGO DE BB Y SS SUJETOS A DETRACCION</field></record>
+		<record id="e15_3001" model="einvoice.catalog.15"><field name="code">3001</field><field name="name">Detracciones: NUMERO DE CTA EN EL BN</field></record>
+		<record id="e15_3002" model="einvoice.catalog.15"><field name="code">3002</field><field name="name">Detracciones: Recursos  Hidrobiologicos-Nombre y matricula de la embarcacion</field></record>
+		<record id="e15_3003" model="einvoice.catalog.15"><field name="code">3003</field><field name="name">Detracciones: Recursos  Hidrobiologicos-Tipo y cantidad de especie vendida</field></record>
+		<record id="e15_3004" model="einvoice.catalog.15"><field name="code">3004</field><field name="name">Detracciones: Recursos  Hidrobiologicos-Lugar de descarga</field></record>
+		<record id="e15_3005" model="einvoice.catalog.15"><field name="code">3005</field><field name="name">Detracciones: Recursos  Hidrobiologicos-Fecha de descarga</field></record>
+		<record id="e15_3006" model="einvoice.catalog.15"><field name="code">3006</field><field name="name">Detracciones: Transporte Bienes via terrestre - Numero Registro MTC</field></record>
+		<record id="e15_3007" model="einvoice.catalog.15"><field name="code">3007</field><field name="name">Detracciones: Transporte Bienes via terrestre - Configuración vehicular</field></record>
+		<record id="e15_3008" model="einvoice.catalog.15"><field name="code">3008</field><field name="name">Detracciones: Transporte Bienes via terrestre - Punto de origen</field></record>
+		<record id="e15_3009" model="einvoice.catalog.15"><field name="code">3009</field><field name="name">Detracciones: Transporte Bienes via terrestre - Punto de destino</field></record>
+		<record id="e15_3010" model="einvoice.catalog.15"><field name="code">3010</field><field name="name">Detracciones: Transporte Bienes via terrestre - Valor referencial preliminar</field></record>
+		<record id="e15_4000" model="einvoice.catalog.15"><field name="code">4000</field><field name="name">Beneficio hospedajes: Codigo Pais de emision del pasaporte</field></record>
+		<record id="e15_4001" model="einvoice.catalog.15"><field name="code">4001</field><field name="name">Beneficio hospedajes: Codigo Pais de residencia del sujeto no domiciliado</field></record>
+		<record id="e15_4002" model="einvoice.catalog.15"><field name="code">4002</field><field name="name">Beneficio hospedajes: Fecha de ingreso al pais</field></record>
+		<record id="e15_4003" model="einvoice.catalog.15"><field name="code">4003</field><field name="name">Beneficio hospedajes: Fecha de ingreso al establecimiento</field></record>
+		<record id="e15_4004" model="einvoice.catalog.15"><field name="code">4004</field><field name="name">Beneficio hospedajes: Fecha de salida al establecimiento</field></record>
+		<record id="e15_4005" model="einvoice.catalog.15"><field name="code">4005</field><field name="name">Beneficio hospedajes: Numero de dias de permanencia</field></record>
+		<record id="e15_4006" model="einvoice.catalog.15"><field name="code">4006</field><field name="name">Beneficio hospedajes: Fecha de consumo</field></record>
+		<record id="e15_4007" model="einvoice.catalog.15"><field name="code">4007</field><field name="name">Beneficio hospedajes: Paquete turistico - Nombre y Apellidos del Huesped</field></record>
+		<record id="e15_4008" model="einvoice.catalog.15"><field name="code">4008</field><field name="name">Beneficio hospedajes: Paquete turistico - Tipo documento identidad del huesped</field></record>
+		<record id="e15_4009" model="einvoice.catalog.15"><field name="code">4009</field><field name="name">Beneficio hospedajes: Paquete turistico - Numero de documento identidad de huesped</field></record>
+		<record id="e15_5000" model="einvoice.catalog.15"><field name="code">5000</field><field name="name">Proveedores Estado: Numero de Expediente</field></record>
+		<record id="e15_5001" model="einvoice.catalog.15"><field name="code">5001</field><field name="name">Proveedores Estado: Codigo de unidad ejecutora</field></record>
+		<record id="e15_5002" model="einvoice.catalog.15"><field name="code">5002</field><field name="name">Proveedores Estado: No de proceso de seleccion</field></record>
+		<record id="e15_5003" model="einvoice.catalog.15"><field name="code">5003</field><field name="name">Proveedores Estado: No de contrato</field></record>
 
-
+    
     </data>
 </openerp>

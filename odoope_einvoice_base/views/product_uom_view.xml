@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_product_uom_inherited" model="ir.ui.view">
+			    <field name="name">Product Uom form – User extension</field>
+			    <field name="model">product.uom</field>
+			    <field name="inherit_id" ref="product.product_uom_form_view"/>
+			    <field name="arch" type="xml">
+			    <field name="rounding" position="after">
+			     		<newline/>
+			            <field name="x_code" string="Codigo SUNAT" />
+			     </field>
+			    </field>
+			</record>
+			
+		</data>
+		
+</openerp>

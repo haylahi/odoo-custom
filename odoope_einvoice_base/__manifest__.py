@@ -21,13 +21,13 @@
 
 {
     'name' : 'Factura electronica - Base',
-    'version' : '1.0.1',
-    'author' : 'Odoo Peru',
+    'version' : '1.0.0',
+    'author' : 'MyR Consultoria en Sistemas SAC',
     'category' : 'Accounting & Finance',
     'summary': 'Tablas y requisitos mínimos para la factura electrónica.',
     'license': 'AGPL-3',
     'contributors': [
-        'Leonidas Pezo <leonidas@odooperu.pe>','Ricardo Livelli <ricardo.livelli@myrconsulting.net>'
+        'Ricardo Livelli <ricardo.livelli@myrconsulting.net>'
     ],
     'description' : """
 Factura electronica - Base.
@@ -38,10 +38,11 @@ Tablas:
     * Tablas requeridas por la Factura electrónica
 
     """,
-    'website': 'http://odooperu.pe/page/contabilidad',
+    'website': 'http://www.myrconsulting.net',
     'depends' : ['account','account_accountant'],
     'data': [
         'views/einvoice_view.xml',
+        'views/product_uom_view.xml',
         'data/einvoice_data.xml',
         'security/ir.model.access.csv'
     ],

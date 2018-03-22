@@ -264,6 +264,72 @@
 		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 	    </record>
+    
+    <!-- Codigos de Documentos Relacionados Tributarios -->	
+	    <record id="view_catalog_12_tree" model="ir.ui.view">
+            <field name="name">Codigos - Documentos Relacionados Tributarios</field>
+            <field name="model">einvoice.catalog.12</field>            
+            <field name="arch" type="xml">
+                <tree string="Codigos - Documentos Relacionados Tributarios">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+	    </record>        
+	    <record id="view_catalog_12_form" model="ir.ui.view">
+            <field name="name">Codigos - Documentos Relacionados Tributarios</field>
+            <field name="model">einvoice.catalog.12</field>            
+            <field name="arch" type="xml">
+                <form string="Codigos - Documentos Relacionados Tributarios">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </form>	
+            </field>
+	    </record>        
+	    <record model="ir.actions.act_window" id="catalog_12_action">
+		    <field name="name">Codigos - Documentos Relacionados Tributarios</field>
+		    <field name="res_model">einvoice.catalog.12</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+	    </record>
+	    
+	  
+	  <!-- Codigos de Elementos Adicionales en la Factura Boleta Electronica -->	
+	    <record id="view_catalog_15_tree" model="ir.ui.view">
+            <field name="name">Codigos - Elementos Adicionales en la Factura Boleta Electronica</field>
+            <field name="model">einvoice.catalog.15</field>            
+            <field name="arch" type="xml">
+                <tree string="Codigos - Elementos Adicionales en la Factura Boleta Electronica">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+	    </record>        
+	    <record id="view_catalog_15_form" model="ir.ui.view">
+            <field name="name">Codigos - Elementos Adicionales en la Factura Boleta Electronica</field>
+            <field name="model">einvoice.catalog.15</field>            
+            <field name="arch" type="xml">
+                <form string="Codigos - Elementos Adicionales en la Factura Boleta Electronica">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </form>	
+            </field>
+	    </record>        
+	    <record model="ir.actions.act_window" id="catalog_15_action">
+		    <field name="name">Codigos - Documentos Relacionados Tributarios</field>
+		    <field name="res_model">einvoice.catalog.15</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+	    </record>  
+    
         
 
     <!-- Menu -->
@@ -277,6 +343,8 @@
     <menuitem name="Catalog 10 - Tipo Nota de Debito" id="einvoice_catalog_10_menu" parent="einvoice_configuration_menu" action="catalog_10_action" sequence="10"/>
     <menuitem name="Catalog 16 - Tipo de Precio de Venta Unitario" id="einvoice_catalog_16_menu" parent="einvoice_configuration_menu" action="catalog_16_action" sequence="16"/>
     <menuitem name="Catalog 17 - Tipo de Operación" id="einvoice_catalog_17_menu" parent="einvoice_configuration_menu" action="catalog_17_action" sequence="17"/>
+    <menuitem name="Catalog 12 - Documentos Relacionados Tributarios" id="einvoice_catalog_12_menu" parent="einvoice_configuration_menu" action="catalog_12_action" sequence="12"/>
+    <menuitem name="Catalog 15 - Elementos Adicionales en la Factura Boleta Electronica" id="einvoice_catalog_15_menu" parent="einvoice_configuration_menu" action="catalog_15_action" sequence="15"/>
     
 	</data>
 </openerp>

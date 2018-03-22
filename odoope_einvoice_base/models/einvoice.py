@@ -153,3 +153,38 @@ class product_uom(models.Model):
             l_name +=  table.name
             result.append((table.id, l_name ))
         return result
+    
+class einvoice_catalog_12(models.Model):
+    _name = "einvoice.catalog.12"
+    _description = 'Codigos - Documentos Relacionados Tributarios'
+
+    code = fields.Char(string='Codigo', size=4, index=True, required=True)
+    name = fields.Char(string='Descripcion', size=128, index=True, required=True)
+    
+    @api.multi
+    @api.depends('code', 'name')
+    def name_get(self):
+        result = []
+        for table in self:
+            l_name = table.code and table.code + ' - ' or ''
+            l_name +=  table.name
+            result.append((table.id, l_name ))
+        return result
+    
+class einvoice_catalog_15(models.Model):
+    _name = "einvoice.catalog.15"
+    _description = 'Codigos - Elementos Adicionales en la Factura Boleta Electronica'
+
+    code = fields.Char(string='Codigo', size=4, index=True, required=True)
+    name = fields.Char(string='Descripcion', size=128, index=True, required=True)
+    
+    @api.multi
+    @api.depends('code', 'name')
+    def name_get(self):
+        result = []
+        for table in self:
+            l_name = table.code and table.code + ' - ' or ''
+            l_name +=  table.name
+            result.append((table.id, l_name ))
+        return result
+

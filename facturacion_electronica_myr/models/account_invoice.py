@@ -55,7 +55,7 @@ class account_invoice(models.Model):
                     #Calculos por item:
     
                     #Cod unidade de medida SUNAT - Catalogo 3
-                    codUnidadMedida = 'NIU' 
+                    codUnidadMedida = line.product_id.uom_id.x_code 
     
                     #Cantidad por item
                     quantity = '%.10f' % line.quantity
@@ -104,7 +104,6 @@ class account_invoice(models.Model):
                 
                 #Razon Social
                 if (invoice.partner_id.registration_name != False):
-                    _logger.debug('SERA 44 >> %s  ', invoice.partner_id.registration_name[:100])
                     rznSocialUsuario = invoice.partner_id.registration_name[:100]
                 else:
                     rznSocialUsuario = ''
