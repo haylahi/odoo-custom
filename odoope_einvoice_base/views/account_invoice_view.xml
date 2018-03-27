@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_account_invoice_inherited" model="ir.ui.view">
+			    <field name="name">Account Invoice form – User extension</field>
+			    <field name="model">account.invoice</field>
+			    <field name="inherit_id" ref="account.invoice_form"/>
+			    <field name="arch" type="xml">
+				    <xpath expr="//group/field[@name='journal_id']" position="replace"/>
+				    <field name="date_due" position="replace"/>
+				    <xpath expr="//group/field[@name='name']" position="replace"/>
+				    <field name="date_invoice" position="after">
+				     		<newline/>
+				            <field name="journal_id" />
+				            
+				     </field>
+				     <field name="payment_term_id" position="after">
+				     		<newline/>
+				     		<field name="date_due"  />
+				     		<newline/>
+				     		<field name="name"  />
+				     </field>
+				     <field name="date_invoice" context="{'date_invoice':fields.Date.context_today(self)}"  />
+			    </field>
+			</record>
+			
+		</data>
+		
+</openerp>

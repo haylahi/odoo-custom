@@ -43,6 +43,7 @@ Tablas:
     'data': [
         'views/einvoice_view.xml',
         'views/product_uom_view.xml',
+        'views/account_invoice_view.xml',
         'data/einvoice_data.xml',
         'security/ir.model.access.csv'
     ],
