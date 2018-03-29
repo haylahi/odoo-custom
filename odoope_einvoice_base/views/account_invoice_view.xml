@@ -24,7 +24,19 @@
 				     		<newline/>
 				     		<field name="x_code_catalog_07" options="{'no_create': True}" />
 				     </field>
+				     
 				     <field name="date_invoice" context="{'date_invoice':fields.Date.context_today(self)}"  />
+			    </field>
+			</record>
+			
+			<record id="view_account_order_extend1_form" model="ir.ui.view">
+			    <field name="name">Account Invoice form – User extension - Sunat - Lineas</field>
+			    <field name="model">account.invoice</field>
+			    <field name="inherit_id" ref="account.invoice_form" />
+			    <field name="arch" type="xml">
+			        <xpath expr="//page[1]/field[@name='invoice_line_ids']/tree[1]/field[@name='name']" position="after">
+			            <field name="x_code_catalog_07" options="{'no_create': True}" />
+			        </xpath>
 			    </field>
 			</record>
 			

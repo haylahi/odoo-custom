@@ -21,5 +21,14 @@ class account_invoice(models.Model):
         res = self.env['einvoice.catalog.07'].search([('code','=','10')])
         return res.id or False
     x_code_catalog_07 = fields.Many2one('einvoice.catalog.07',string='Tipo de IGV',help='Seleccione el Tipo de IGV', default=_get_default_07)
+
+
+class account_invoice_line(models.Model):
+    _inherit = 'account.invoice.line'
     
+    @api.model
+    def _get_default_07(self):
+        res = self.env['einvoice.catalog.07'].search([('code','=','10')])
+        return res.id or False
+    x_code_catalog_07 = fields.Many2one('einvoice.catalog.07',string='Tipo de IGV',help='Seleccione el Tipo de IGV', default=_get_default_07)
     
