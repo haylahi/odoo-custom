@@ -19,6 +19,10 @@
 				     		<field name="date_due"  />
 				     		<newline/>
 				     		<field name="name"  />
+				     		<newline/>
+				     		<field name="x_code_catalog_17" options="{'no_create': True}" />
+				     		<newline/>
+				     		<field name="x_code_catalog_07" options="{'no_create': True}" />
 				     </field>
 				     <field name="date_invoice" context="{'date_invoice':fields.Date.context_today(self)}"  />
 			    </field>
