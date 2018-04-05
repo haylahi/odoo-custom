@@ -32,3 +32,5 @@ class account_invoice_line(models.Model):
         return res.id or False
     x_code_catalog_07 = fields.Many2one('einvoice.catalog.07',string='Tipo de IGV',help='Seleccione el Tipo de IGV', default=_get_default_07)
     
+    x_code_catalog_08 = fields.Many2one('einvoice.catalog.08',string='Tipo de ISC',help='Seleccione el Tipo de ISC')
+    

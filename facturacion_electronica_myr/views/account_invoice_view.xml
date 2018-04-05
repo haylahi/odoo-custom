@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            <record id="view_form_account_invoice_facturador_sunat_inherited" model="ir.ui.view">
+			    <field name="name">Account Invoice form – Facturador Sunat</field>
+			    <field name="model">account.invoice</field>
+			    <field name="inherit_id" ref="account.invoice_form"/>
+			    <field name="arch" type="xml">
+			    	<xpath expr="//page[1]" position="after">
+			        <page string="Facturador Sunat" attrs="{'invisible': [('state','not in',('open'))]}">
+			            <group name="group_top">
+	                        <group name="group_left" string="Envío de archivos">
+	                        	<button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/>
+	                        	<newline/>
+	                        	<field name="factura_binary_fname"/>
+	                            <field name="file_factura_json" filename="factura_binary_fname" readonly="1" string="Descargar Archivo Sunat" widget="binary"/>
+								
+	                        </group>
+	                        <group name="group_right" string="Recepción de archivos">
+	                        	<button name="124" type="action" string="Generar Archivos" class="oe_highlight"/>
+	                        	<newline/>
+	                            <field name="x_code_catalog_17"  />
+	                        </group>
+                        </group>
+			        </page>
+			    	</xpath>
+			    </field>
+			</record>
+		</data>
+</openerp>

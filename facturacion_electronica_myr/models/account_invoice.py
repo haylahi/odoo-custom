@@ -2,6 +2,8 @@
 import logging
 import json
 import ast
+import io
+import base64
 from openerp import api, fields, models, _
 
 
@@ -9,6 +11,9 @@ _logger = logging.getLogger(__name__)
 
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
+    
+    file_factura_json = fields.Binary('Descargar Archivo Sunat')
+    factura_binary_fname = fields.Char('Archivo Sunat')
     
     @api.multi
     def compute_round(self, amount):
@@ -32,6 +37,13 @@ class account_invoice(models.Model):
         if ruta_sunat!='':
             for invoice in self:
                 res_partner = self.env['res.partner'].browse(invoice.partner_id)
+                num_ruc_company = invoice.company_id.vat
+                cc = invoice.journal_id.sequence_id.code
+                serie = invoice.journal_id.sequence_id.prefix
+                serie = serie[:4]
+                number_invoice = invoice.number
+                number_invoice = number_invoice[5:]
+                namefilejson = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".json"
                  
                 _logger.debug('SERA 0 >> %s  ', invoice.partner_id)
                 _logger.debug('SERA 1 >> %s  ', invoice.partner_id.website)
@@ -45,6 +57,7 @@ class account_invoice(models.Model):
                     
                     #tax = line.invoice_line_tax_ids.filtered(lambda   r: r.name.startswith('IGV'))
                     tax = self.tax(line.invoice_line_tax_ids,'IGV 18')
+                    taxISC = self.tax(line.invoice_line_tax_ids,'ISC')
                     
                     #_logger.debug('SERA 34 >> %s  ', line.invoice_line_tax_ids.filtered(lambda   r: r.name.startswith('IGV')))
                     _logger.debug('SERA 35 >> %s  ', tax.name)
@@ -73,7 +86,19 @@ class account_invoice(models.Model):
                     format_mtoIgvItem = '%.2f' % self.compute_round(mtoIgvItem)
                     
                     #Tipo de IGV - Catalogo 7
-                    tipAfeIGV = 10
+                    tipAfeIGV = line.x_code_catalog_07.code
+                    
+                    if taxISC!='':
+                        #ISC por Item
+                        mtoIscItem = (mtoPrecioVentaItem / 100.0) * taxISC.amount
+                        format_mtoIscItem = '%.2f' % self.compute_round(mtoIscItem)
+                        
+                        #Tipo de ISC - Catalogo 8
+                        tipSisISC = line.x_code_catalog_08.code
+                    else:
+                        format_mtoIscItem = '%.2f' % 0
+                        tipSisISC = 0
+                    
                     
                     #Precio de venta unitario por item
                     format_mtoPrecioVentaItem = '%.10f' % mtoPrecioVentaItem  
@@ -89,6 +114,8 @@ class account_invoice(models.Model):
                                 "mtoValorUnitario":price_unit,
                                 "mtoIgvItem": format_mtoIgvItem,
                                 "tipAfeIGV":tipAfeIGV,
+                                "tipSisISC":tipSisISC,
+                                "mtoIscItem": format_mtoIscItem,
                                 "mtoPrecioVentaItem":format_mtoPrecioVentaItem,
                                 "mtoValorVentaItem":format_mtoValorVentaItem
                              })
@@ -131,8 +158,15 @@ class account_invoice(models.Model):
                       
                     }
                 
-                with open(ruta_sunat+'datosxxx.json', 'w') as file:
+                with open(ruta_sunat+namefilejson, 'w') as file:
                     json.dump(datos, file,sort_keys=True,separators=(',',':'))
+                
+                file = open(ruta_sunat+namefilejson, "rb")
+                out = file.read()
+                file.close()
+                invoice.file_factura_json = base64.encodestring(out)
+                invoice.factura_binary_fname = namefilejson
+                self.write({'factura_binary_fname': namefilejson})
                 
                 _logger.debug('CreateXYZ3 a %s with ', self._name)
                 _logger.debug('Valor a %s with ', invoice.date_invoice)
@@ -141,26 +175,18 @@ class account_invoice(models.Model):
     
     
     @api.multi
-    def action_invoice_open(self):
-        # lots of duplicate calls to action_invoice_open, so we remove those already open
-        to_open_invoices = self.filtered(lambda inv: inv.state != 'open')
-        if to_open_invoices.filtered(lambda inv: inv.state not in ['proforma2', 'draft']):
-            raise UserError(_("Invoice must be in draft or Pro-forma state in order to validate it."))
-        to_open_invoices.action_date_assign()
-        to_open_invoices.action_move_create()
-        return to_open_invoices.invoice_validate()
-    
-    
-    @api.multi
     def action_invoice_draft(self):
-            if ast.literal_eval(self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr')]).value):
-                self.generate_json_file_invoice()
-                
-            res = super(account_invoice, self).action_invoice_draft()
-            return res
+        res = super(account_invoice, self).action_invoice_draft()
+        return res
     
     @api.multi
     def invoice_validate(self):
         _logger.debug('CreateXYZ2 a %s with ', self._name)
         res = super(account_invoice, self).invoice_validate()
         return res
+    
+    @api.multi
+    def generate_sunat_files(self):
+        _logger.debug('SERA 0123456789 >> %s  ')
+        if ast.literal_eval(self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr')]).value):
+                return self.generate_json_file_invoice()
