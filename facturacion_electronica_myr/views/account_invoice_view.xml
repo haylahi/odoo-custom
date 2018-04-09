@@ -1,30 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <openerp>
         <data>
+        
+        	<record model="ir.ui.view" id="view_form_account_invoice_facturador_sunat_inherited_hide">
+			    <field name="model">account.invoice</field>
+			    <field name="name">Account Invoice form – Facturador Sunat -hide</field>
+			    <field name="inherit_id" ref="account.invoice_form"/>
+			    <field name="arch" type="xml">
+			        <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+			            <attribute name="invisible">1</attribute>
+			        </xpath>
+			        <xpath expr="//button[@name='invoice_print']" position="attributes">
+			            <attribute name="invisible">1</attribute>
+			        </xpath>
+			        <xpath expr="//button[@name='124']" position="attributes">
+			            <attribute name="invisible">1</attribute>
+			        </xpath>
+			        <xpath expr="//button[@name='187']" position="attributes">
+			            <attribute name="invisible">1</attribute>
+			        </xpath>
+			        <xpath expr="//button[@name='action_invoice_cancel']" position="attributes">
+			            <attribute name="invisible">1</attribute>
+			        </xpath>
+			        
+			    </field>
+			</record>
+        
             <record id="view_form_account_invoice_facturador_sunat_inherited" model="ir.ui.view">
 			    <field name="name">Account Invoice form – Facturador Sunat</field>
 			    <field name="model">account.invoice</field>
 			    <field name="inherit_id" ref="account.invoice_form"/>
 			    <field name="arch" type="xml">
+			    	<header>
+			    		<button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send','aprob_sunat'))]}" class="oe_highlight" groups="base.group_user"/>
+	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send','aprob_sunat'))]}" class="oe_highlight" groups="base.group_user"/>
+	                    <button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send','aprob_sunat'))]}" groups="base.group_user"/>
+	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send','aprob_sunat'))]}" groups="base.group_user"/>
+	                    <button name="124" type="action" states="open" string="Registrar Pago" groups="account.group_account_invoice" class="oe_highlight" attrs="{'invisible':[('state', 'not in', ('open','send','aprob_sunat'))]}"/>
+	                    <button name="187" type="action" string="Nota de Crédito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','aprob_sunat','paid'))]}"/>
+	                    <button name="187" type="action" string="Nota de Débito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','aprob_sunat','paid'))]}"/>
+	                    <button name="action_invoice_cancel" type="object" states="draft,proforma2,open,send,aprob_sunat" string="Cancelar Factura" groups="base.group_no_one"/> 
+	                    
+			    		
+			    		<field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,send,aprob_sunat,open,paid"/>
+			    	</header>	
+				     
 			    	<xpath expr="//page[1]" position="after">
-			        <page string="Facturador Sunat" attrs="{'invisible': [('state','not in',('open'))]}">
+			        <page string="Sunat" attrs="{'invisible': [('state','in',('draft'))]}">
 			            <group name="group_top">
 	                        <group name="group_left" string="Envío de archivos">
 	                        	<button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/>
 	                        	<newline/>
-	                        	<field name="factura_binary_fname"/>
-	                            <field name="file_factura_json" filename="factura_binary_fname" readonly="1" string="Descargar Archivo Sunat" widget="binary"/>
+	                        	<field name="factura_binary_fname" invisible="1"/>
+	                            <field name="file_factura_json" nolabel="1" filename="factura_binary_fname" readonly="1" string="Descargar" widget="binary" style="width:200%"/>
 								
 	                        </group>
 	                        <group name="group_right" string="Recepción de archivos">
-	                        	<button name="124" type="action" string="Generar Archivos" class="oe_highlight"/>
+	                        	<button name="load_sunat_files" type="object" string="Respuesta SUNAT" class="oe_highlight"/>
 	                        	<newline/>
-	                            <field name="x_code_catalog_17"  />
+	                        	<field name="factura_binary_fname_zip" invisible="1"/>
+	                            <field name="file_factura_zip" nolabel="1" filename="factura_binary_fname_zip" readonly="1" string="Descargar zip" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_xml" invisible="1"/>
+	                            <field name="file_factura_xml" nolabel="1" filename="factura_binary_fname_xml" readonly="1" string="Descargar xml" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_cdr" invisible="1"/>
+	                            <field name="file_factura_cdr" nolabel="1" filename="factura_binary_fname_cdr" readonly="1" string="Descargar cdr" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_pdf" invisible="1"/>
+	                            <field name="file_factura_pdf" nolabel="1" filename="factura_binary_fname_pdf" readonly="1" string="Descargar pdf" widget="binary" style="width:200%"/>
 	                        </group>
                         </group>
 			        </page>
 			    	</xpath>
 			    </field>
 			</record>
+			
+			
 		</data>
 </openerp>

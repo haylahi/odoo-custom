@@ -4,6 +4,7 @@ import json
 import ast
 import io
 import base64
+import os.path
 from openerp import api, fields, models, _
 
 
@@ -12,8 +13,36 @@ _logger = logging.getLogger(__name__)
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
     
+    state = fields.Selection([
+            ('draft','Draft'),
+            ('proforma', 'Pro-forma'),
+            ('proforma2', 'Pro-forma'),
+            ('open', 'Open'),
+            ('send', 'Enviado'),
+            ('aprob_sunat', 'Aprobado'),
+            ('rechaz_sunat', 'Rechazado'),
+            ('paid', 'Paid'),
+            ('cancel', 'Cancelled'),
+        ], string='Status', index=True, readonly=True, default='draft',
+        track_visibility='onchange', copy=False,
+        help=" * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
+             " * The 'Pro-forma' status is used when the invoice does not have an invoice number.\n"
+             " * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
+             " * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
+             " * The 'Cancelled' status is used when user cancel invoice.")
+    
     file_factura_json = fields.Binary('Descargar Archivo Sunat')
     factura_binary_fname = fields.Char('Archivo Sunat')
+    file_factura_zip = fields.Binary('Respuesta Sunat')
+    factura_binary_fname_zip = fields.Char('Archivo ZIP Sunat')
+    file_factura_xml = fields.Binary('Respuesta Sunat')
+    factura_binary_fname_xml = fields.Char('Archivo XML Sunat')
+    file_factura_cdr = fields.Binary('Respuesta Sunat')
+    factura_binary_fname_cdr = fields.Char('Archivo CDR Sunat')
+    file_factura_pdf = fields.Binary('Respuesta Sunat')
+    factura_binary_fname_pdf = fields.Char('Archivo PDF Sunat')
+    
+    
     
     @api.multi
     def compute_round(self, amount):
@@ -167,11 +196,75 @@ class account_invoice(models.Model):
                 invoice.file_factura_json = base64.encodestring(out)
                 invoice.factura_binary_fname = namefilejson
                 self.write({'factura_binary_fname': namefilejson})
+                self.write({'state': 'send'})
                 
                 _logger.debug('CreateXYZ3 a %s with ', self._name)
                 _logger.debug('Valor a %s with ', invoice.date_invoice)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
+            
+    
+    @api.multi
+    def process_respuesta_sunat(self):
+        ruta_sunat = self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr.ruta')]).value
+        
+        if ruta_sunat!='':
+            for invoice in self:
+                
+                num_ruc_company = invoice.company_id.vat
+                cc = invoice.journal_id.sequence_id.code
+                serie = invoice.journal_id.sequence_id.prefix
+                serie = serie[:4]
+                number_invoice = invoice.number
+                number_invoice = number_invoice[5:]
+                
+                # RUTA ENVIO - ARCHIVO ZIP
+                envio_sunat = self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr.envio')]).value
+                namefilezip = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
+                if os.path.isfile(envio_sunat+namefilezip):                
+                    file = open(envio_sunat+namefilezip, "rb")
+                    out = file.read()
+                    file.close()
+                    invoice.file_factura_zip = base64.encodestring(out)
+                    invoice.factura_binary_fname_zip = namefilezip
+                    self.write({'factura_binary_fname_zip': namefilezip})
+                
+                # RUTA ENVIO - ARCHIVO XML
+                envio_sunat = self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr.envio')]).value
+                namefilexml = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".xml"
+                if os.path.isfile(envio_sunat+namefilexml):                
+                    file = open(envio_sunat+namefilexml, "rb")
+                    out = file.read()
+                    file.close()
+                    invoice.file_factura_xml = base64.encodestring(out)
+                    invoice.factura_binary_fname_xml = namefilexml
+                    self.write({'factura_binary_fname_xml': namefilexml})
+                
+                # RUTA ENVIO - ARCHIVO CDR
+                envio_sunat = self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr.rpta')]).value
+                namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
+                if os.path.isfile(envio_sunat+namefilerpta):              
+                    file = open(envio_sunat+namefilerpta, "rb")
+                    out = file.read()
+                    file.close()
+                    invoice.file_factura_cdr = base64.encodestring(out)
+                    invoice.factura_binary_fname_cdr = namefilerpta
+                    self.write({'factura_binary_fname_cdr': namefilerpta})
+                
+                 # RUTA ENVIO - ARCHIVO PDF
+                envio_sunat = self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr.repo')]).value
+                namefilerepo = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".pdf" 
+                if os.path.isfile(envio_sunat+namefilerepo):               
+                    file = open(envio_sunat+namefilerepo, "rb")
+                    out = file.read()
+                    file.close()
+                    invoice.file_factura_pdf = base64.encodestring(out)
+                    invoice.factura_binary_fname_pdf = namefilerepo
+                    self.write({'factura_binary_fname_pdf': namefilerepo})
+                    self.write({'state': 'aprob_sunat'})
+                
+        else:
+            _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')        
     
     
     @api.multi
@@ -190,3 +283,8 @@ class account_invoice(models.Model):
         _logger.debug('SERA 0123456789 >> %s  ')
         if ast.literal_eval(self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr')]).value):
                 return self.generate_json_file_invoice()
+            
+    @api.multi
+    def load_sunat_files(self):
+        if ast.literal_eval(self.env['ir.config_parameter'].search([('key','=','facturacion_electronica.myr')]).value):
+                return self.process_respuesta_sunat()        
