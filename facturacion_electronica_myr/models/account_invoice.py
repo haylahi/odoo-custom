@@ -17,10 +17,8 @@ class account_invoice(models.Model):
             ('draft','Draft'),
             ('proforma', 'Pro-forma'),
             ('proforma2', 'Pro-forma'),
-            ('open', 'Open'),
             ('send', 'Enviado'),
-            ('aprob_sunat', 'Aprobado'),
-            ('rechaz_sunat', 'Rechazado'),
+            ('open', 'Open'),
             ('paid', 'Paid'),
             ('cancel', 'Cancelled'),
         ], string='Status', index=True, readonly=True, default='draft',
@@ -261,7 +259,7 @@ class account_invoice(models.Model):
                     invoice.file_factura_pdf = base64.encodestring(out)
                     invoice.factura_binary_fname_pdf = namefilerepo
                     self.write({'factura_binary_fname_pdf': namefilerepo})
-                    self.write({'state': 'aprob_sunat'})
+                    self.write({'state': 'open'})
                 
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')        

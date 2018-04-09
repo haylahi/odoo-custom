@@ -32,17 +32,17 @@
 			    <field name="inherit_id" ref="account.invoice_form"/>
 			    <field name="arch" type="xml">
 			    	<header>
-			    		<button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send','aprob_sunat'))]}" class="oe_highlight" groups="base.group_user"/>
-	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send','aprob_sunat'))]}" class="oe_highlight" groups="base.group_user"/>
-	                    <button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send','aprob_sunat'))]}" groups="base.group_user"/>
-	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send','aprob_sunat'))]}" groups="base.group_user"/>
-	                    <button name="124" type="action" states="open" string="Registrar Pago" groups="account.group_account_invoice" class="oe_highlight" attrs="{'invisible':[('state', 'not in', ('open','send','aprob_sunat'))]}"/>
-	                    <button name="187" type="action" string="Nota de Crédito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','aprob_sunat','paid'))]}"/>
-	                    <button name="187" type="action" string="Nota de Débito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','aprob_sunat','paid'))]}"/>
-	                    <button name="action_invoice_cancel" type="object" states="draft,proforma2,open,send,aprob_sunat" string="Cancelar Factura" groups="base.group_no_one"/> 
+			    		<button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send'))]}" class="oe_highlight" groups="base.group_user"/>
+	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','send'))]}" class="oe_highlight" groups="base.group_user"/>
+	                    <button name="action_invoice_sent" type="object" string="Enviar por Email" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send'))]}" groups="base.group_user"/>
+	                    <button name="invoice_print" string="Imprimir" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','send'))]}" groups="base.group_user"/>
+	                    <button name="124" type="action" states="open" string="Registrar Pago" groups="account.group_account_invoice" class="oe_highlight" attrs="{'invisible':[('state', 'not in', ('open','send'))]}"/>
+	                    <button name="187" type="action" string="Nota de Crédito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','paid'))]}"/>
+	                    <button name="187" type="action" string="Nota de Débito" groups="account.group_account_invoice" attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','send','paid'))]}"/>
+	                    <button name="action_invoice_cancel" type="object" states="draft,proforma2,open,send" string="Cancelar Factura" groups="base.group_no_one"/> 
 	                    
 			    		
-			    		<field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,send,aprob_sunat,open,paid"/>
+			    		<field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,send,open,paid"/>
 			    	</header>	
 				     
 			    	<xpath expr="//page[1]" position="after">
