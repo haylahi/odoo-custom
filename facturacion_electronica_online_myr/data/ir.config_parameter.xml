@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="0">
+	    <record id="myid_myr_1" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr</field>
+	        <field name="value">True</field>
+	    </record>
+	    <record id="myid_myr_2" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.ruta</field>
+	        <field name="value">D:\data0\facturador\DATA\</field>
+	    </record>
+	    <record id="myid_myr_3" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.envio</field>
+	        <field name="value">D:\data0\facturador\ENVIO\</field>
+	    </record>
+	    <record id="myid_myr_4" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.firma</field>
+	        <field name="value">D:\data0\facturador\FIRMA\</field>
+	    </record>
+	    <record id="myid_myr_5" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.repo</field>
+	        <field name="value">D:\data0\facturador\REPO\</field>
+	    </record>
+	    <record id="myid_myr_6" model="ir.config_parameter">
+	        <field name="key">facturacion_electronica.myr.rpta</field>
+	        <field name="value">D:\data0\facturador\RPTA\</field>
+	    </record>
+	 </data>
+</openerp>

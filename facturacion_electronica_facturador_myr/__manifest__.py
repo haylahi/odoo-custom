@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Facturación Electronica MyR",
+    'name': "CPE - Facturador MyR",
 
     'summary': """
-        Facturación Electrónica 2018""",
+        Facturación Electrónica - Facturador 2018""",
 
     'description': """
-        Facturación Electrónica 2018
+        Facturación Electrónica - Facturador 2018
     """,
 
     'author': "MYR CONSULTORIA EN SISTEMAS SAC ",

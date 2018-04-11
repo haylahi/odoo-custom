@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+        
+            <record id="view_form_account_invoice_facturador_sunat_inherited" model="ir.ui.view">
+			    <field name="name">Account Invoice form – Facturador Sunat</field>
+			    <field name="model">account.invoice</field>
+			    <field name="inherit_id" ref="account.invoice_form"/>
+			    <field name="arch" type="xml">
+			    	<xpath expr="//page[1]" position="after">
+			        <page string="Sunat" attrs="{'invisible': [('state','in',('draft'))]}">
+			            <group name="group_top">
+	                        <group name="group_left" string="Envío de archivos">
+	                        	<button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/>
+	                        	<newline/>
+	                        	<field name="factura_binary_fname" invisible="1"/>
+	                            <field name="file_factura_json" nolabel="1" filename="factura_binary_fname" readonly="1" string="Descargar" widget="binary" style="width:200%"/>
+								
+	                        </group>
+	                        <group name="group_right" string="Recepción de archivos">
+	                        	<button name="load_sunat_files" type="object" string="Respuesta SUNAT" class="oe_highlight"/>
+	                        	<newline/>
+	                        	<field name="factura_binary_fname_zip" invisible="1"/>
+	                            <field name="file_factura_zip" nolabel="1" filename="factura_binary_fname_zip" readonly="1" string="Descargar zip" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_xml" invisible="1"/>
+	                            <field name="file_factura_xml" nolabel="1" filename="factura_binary_fname_xml" readonly="1" string="Descargar xml" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_cdr" invisible="1"/>
+	                            <field name="file_factura_cdr" nolabel="1" filename="factura_binary_fname_cdr" readonly="1" string="Descargar cdr" widget="binary" style="width:200%"/>
+	                            <newline/>
+	                        	<field name="factura_binary_fname_pdf" invisible="1"/>
+	                            <field name="file_factura_pdf" nolabel="1" filename="factura_binary_fname_pdf" readonly="1" string="Descargar pdf" widget="binary" style="width:200%"/>
+	                        </group>
+                        </group>
+			        </page>
+			    	</xpath>
+			    </field>
+			</record>
+			
+			
+		</data>
+</openerp>
