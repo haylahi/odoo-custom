@@ -8,13 +8,14 @@
 			    <field name="inherit_id" ref="account.invoice_form"/>
 			    <field name="arch" type="xml">
 			    	<xpath expr="//page[1]" position="after">
-			        <page string="Sunat" attrs="{'invisible': [('state','in',('draft'))]}">
+			    	<!--page string="Sunat" attrs="{'invisible': [('state','in',('draft'))]}"-->
+			        <page string="Sunat" >
 			            <group name="group_top">
 	                        <group name="group_left" string="Envío de archivos">
 	                        	<button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/>
 	                        	<newline/>
-	                        	<field name="factura_binary_fname" invisible="1"/>
-	                            <field name="file_factura_json" nolabel="1" filename="factura_binary_fname" readonly="1" string="Descargar" widget="binary" style="width:200%"/>
+	                        	<field name="factura_binary_fname_xml_send" invisible="1"/>
+	                            <field name="file_factura_xml_send" nolabel="1" filename="factura_binary_fname_xml_send" readonly="1" string="Descargar" widget="binary" style="width:200%"/>
 								
 	                        </group>
 	                        <group name="group_right" string="Recepción de archivos">
