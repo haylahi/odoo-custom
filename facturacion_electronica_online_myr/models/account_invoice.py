@@ -24,7 +24,7 @@ xsdpath = os.path.dirname(os.path.realpath(__file__)).replace('/models','/static
 
 class MyPlugin(MessagePlugin):
     def marshalled(self, context):
-        _logger.debug('Cambia namespace')
+        _logger.debug('Cambia namespace ricardo2711739090')
         soap_env_parent = context.envelope
         #soap_env_parent.set('xmlns:wsse', 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd')
         

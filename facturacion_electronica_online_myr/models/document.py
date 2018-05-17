@@ -99,3 +99,4 @@ class Invoice(Document):
             correlative=self._data['correlative']
         )
         _logger.debug('Invoice Generate Document ')
+        
