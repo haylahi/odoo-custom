@@ -4,15 +4,23 @@ import logging
 import base64
 import os
 import zipfile
-
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError, RedirectWarning, ValidationError
 from jinja2 import FileSystemLoader, Environment
 from lxml import etree
-#Sera12345
-#from signxml import xmldsig
-#from voluptuous import Schema, Required, All, Length, ALLOW_EXTRA, Optional
+from signxml import XMLSigner, XMLVerifier
+from voluptuous import Schema, Required, All, Any, Length, ALLOW_EXTRA, Optional ,Invalid, MultipleInvalid
 from cStringIO import StringIO
+from jinja2 import FileSystemLoader, Environment
 
 _logger = logging.getLogger(__name__)
+
+module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+templateXML = os.path.join(module_dir, 'static')
+templateXML = os.path.join(templateXML, 'template')
+templateXML = os.path.join(templateXML, 'ver_1_0')
+loader = FileSystemLoader(templateXML)
+env = Environment(loader=loader)
 
 class Document(object):
 
@@ -21,20 +29,21 @@ class Document(object):
     def __init__(self, ruc, data, client):
         self._ruc = ruc
         self._data = json.loads(data)
+        
         self._xml = None
         self._document_name = self.generate_document_name()
+        
         self._data.update({
             'document_name': self._document_name,
             'ruc': self._ruc,
             'voucher_number': '{}-{}'.format(self._data['serial'], self._data['correlative'])
         })
-        self._data = json.dumps(self._data, sort_keys=False,separators=(',',':'))
         self._client = client
         self._response = None
         self._zip_path = None
         self.in_memory_data = StringIO()
         self.in_memory_zip = zipfile.ZipFile(self.in_memory_data, "w", zipfile.ZIP_DEFLATED, False)
-        _logger.debug('Document 0 %s ',self._data)
+        _logger.debug('Document Init ')
 
     def generate_document_name(self):
          _logger.debug('Document 1 ')
@@ -44,6 +53,13 @@ class Document(object):
 
     def render(self):
         _logger.debug('Document 3 ')
+        #_logger.debug('Direc 1' + self.templateXML)
+        
+        
+        template = env.get_template(self.template_name)
+        self._xml = template.render(**self._data)
+        _logger.debug('Document 333333 ' + self._xml)
+        ### print "***_xml***", self._xml
 
     def sign(self):
         _logger.debug('Document 4 ')
@@ -62,7 +78,8 @@ class Document(object):
         _logger.debug('Document 8 ')
 
     def process(self):
-        self.validate()
+        self.generate_document_name()
+        #self.validate()
         self.render()
         self.sign()
         self.prepare_zip()
@@ -74,11 +91,22 @@ class Document(object):
 
 class Invoice(Document):
 
+
     template_name = 'invoice.xml'
     voucher_type = ''
 
     def validate(self):
-         _logger.debug('Invoice Validate ')
+        schema = Schema({
+            Required("tipMoneda"): All(str, Length(min=4, max=5),msg='El campo currency debe ser de 3 caracteres')
+        }, extra=ALLOW_EXTRA)
+        
+        try:
+            schema(self._data)
+        except (Invalid, MultipleInvalid) as error:
+            msg = 'Dato(s) faltante(s) o invalido(s) en la factura generada. Inconsistencia(s) encontrada(s)  \n {}\n\n Copia la data de abajo y envie a soporte@myrconsulting.net:\n \n {}'.format(error.msg,self._data)
+            raise ValidationError(_(msg))
+        
+        _logger.debug('Invoice Validate 123 ')
 
     def generate_document_name(self):
         """
@@ -91,6 +119,7 @@ class Invoice(Document):
         FAAA: Facturas
         BAAA: Boletas
         """
+        _logger.debug('Invoice Generate Document ')
         # TODO: Add types as constants in diferent classes
         return '{ruc}-{type}-{serial}-{correlative}'.format(
             ruc=self._ruc,
@@ -98,5 +127,4 @@ class Invoice(Document):
             serial=self._data['serial'],
             correlative=self._data['correlative']
         )
-        _logger.debug('Invoice Generate Document ')
         
