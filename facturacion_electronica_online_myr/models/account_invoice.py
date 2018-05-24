@@ -24,7 +24,7 @@ xsdpath = os.path.dirname(os.path.realpath(__file__)).replace('/models','/static
 
 class MyPlugin(MessagePlugin):
     def marshalled(self, context):
-        _logger.debug('Cambia namespace ricardo2711739090')
+        _logger.debug('Cambia namespace')
         soap_env_parent = context.envelope
         #soap_env_parent.set('xmlns:wsse', 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd')
         
@@ -142,17 +142,17 @@ class account_invoice(models.Model):
             format_mtoValorVentaItem = '%.2f' % (mtoPrecioVentaItem + mtoIgvItem)  
             
             lines.append({
-                        "codUnidadMedida": codUnidadMedida,
-                        "ctdUnidadItem":quantity,
-                        "codProducto":line.product_id.default_code,
-                        "desItem":desItem,
-                        "mtoValorUnitario":price_unit,
-                        "mtoIgvItem": format_mtoIgvItem,
-                        "tipAfeIGV":tipAfeIGV,
-                        "tipSisISC":tipSisISC,
-                        "mtoIscItem": format_mtoIscItem,
-                        "mtoPrecioVentaItem":format_mtoPrecioVentaItem,
-                        "mtoValorVentaItem":format_mtoValorVentaItem
+                        'codUnidadMedida': codUnidadMedida,
+                        'ctdUnidadItem':quantity,
+                        'codProducto':line.product_id.default_code,
+                        'desItem':desItem,
+                        'mtoValorUnitario':price_unit,
+                        'mtoIgvItem': format_mtoIgvItem,
+                        'tipAfeIGV':tipAfeIGV,
+                        'tipSisISC':tipSisISC,
+                        'mtoIscItem': format_mtoIscItem,
+                        'mtoPrecioVentaItem':format_mtoPrecioVentaItem,
+                        'mtoValorVentaItem':format_mtoValorVentaItem
                      })
 
         
@@ -179,26 +179,25 @@ class account_invoice(models.Model):
         amount_total = '%.2f' % invoice.amount_total
         
         datos = {
-               "correlative":number_invoice, 
-               "serial":serie, 
-               "voucher_type":cc, 
-               "fecEmision": invoice.date_invoice,
-               "tipDocUsuario":tipDocUsuario,
-               "numDocUsuario":numDocUsuario,
-               "rznSocialUsuario":rznSocialUsuario,
-               "tipMoneda":tipMoneda,
-               "mtoOperGravadas": amount_untaxed,
-               "mtoOperInafectas":"0.00",
-               "mtoOperExoneradas":"0.00",
-               "mtoIGV": amount_tax,
-               "mtoImpVenta": amount_total,
-               "lstItems": lines
+               'correlative':number_invoice, 
+               'serial':serie, 
+               'voucher_type':cc, 
+               'fecEmision': invoice.date_invoice,
+               'tipDocUsuario':tipDocUsuario,
+               'numDocUsuario':numDocUsuario,
+               'rznSocialUsuario':rznSocialUsuario,
+               'tipMoneda':tipMoneda,
+               'mtoOperGravadas': amount_untaxed,
+               'mtoOperInafectas':'0.00',
+               'mtoOperExoneradas':'0.00',
+               'mtoIGV': amount_tax,
+               'mtoImpVenta': amount_total,
+               'lstItems': lines
               
             }
-        
-        #_logger.debug('Json con datos 2 %s >> ', json.dumps(datos, sort_keys=False, separators=(',',':')))
                 
         return json.dumps(datos, sort_keys=False,separators=(',',':'))
+        
     
     @api.multi
     def generate_json_file_invoice(self):
