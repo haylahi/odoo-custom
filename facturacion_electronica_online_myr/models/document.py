@@ -8,6 +8,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
 from jinja2 import FileSystemLoader, Environment
 from lxml import etree
+#Sera12345
 from signxml import XMLSigner, XMLVerifier
 from voluptuous import Schema, Required, All, Any, Length, ALLOW_EXTRA, Optional ,Invalid, MultipleInvalid
 from cStringIO import StringIO
@@ -127,4 +128,5 @@ class Invoice(Document):
             serial=self._data['serial'],
             correlative=self._data['correlative']
         )
+        
         
