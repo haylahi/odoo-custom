@@ -72,8 +72,8 @@ gCTd9QwAOChqzFCHQM8DWEW/OCBQ5DwzEr4+U30vssFSngWwcXQ/yMVGl4ept3PKrHUrzEE/dWYN
 </cac:DigitalSignatureAttachment>
 </cac:Signature>
 <cac:AccountingSupplierParty>
-<cbc:CustomerAssignedAccountID>20378890161</cbc:CustomerAssignedAccountID>
-<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+<cbc:CustomerAssignedAccountID>{{numDocUsuario}}</cbc:CustomerAssignedAccountID>
+<cbc:AdditionalAccountID>{{tipDocUsuario}}</cbc:AdditionalAccountID>
 <cac:Party>
 <cac:PartyName>
 <cbc:Name><![CDATA[COOLBOX]]></cbc:Name>
@@ -95,8 +95,8 @@ gCTd9QwAOChqzFCHQM8DWEW/OCBQ5DwzEr4+U30vssFSngWwcXQ/yMVGl4ept3PKrHUrzEE/dWYN
 </cac:Party>
 </cac:AccountingSupplierParty>
 <cac:AccountingCustomerParty>
-<cbc:CustomerAssignedAccountID>20566473926</cbc:CustomerAssignedAccountID>
-<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+<cbc:CustomerAssignedAccountID>{{numDocUsuario}}</cbc:CustomerAssignedAccountID>
+<cbc:AdditionalAccountID>{{tipDocUsuario}}</cbc:AdditionalAccountID>
 <cac:Party>
 <cac:PartyLegalEntity>
 <cbc:RegistrationName><![CDATA[M Y R CONSULTORIA EN SISTEMAS S.A.C.]]></cbc:RegistrationName>
@@ -110,7 +110,7 @@ gCTd9QwAOChqzFCHQM8DWEW/OCBQ5DwzEr4+U30vssFSngWwcXQ/yMVGl4ept3PKrHUrzEE/dWYN
 </cac:Party>
 </cac:AccountingCustomerParty>
 <cac:TaxTotal>
-<cbc:TaxAmount currencyID="PEN">15.22</cbc:TaxAmount>
+<cbc:TaxAmount currencyID="{{tipMoneda}}">15.22</cbc:TaxAmount>
 <cac:TaxSubtotal>
 <cbc:TaxAmount currencyID="PEN">15.22</cbc:TaxAmount>
 <cac:TaxCategory>
