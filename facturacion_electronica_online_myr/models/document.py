@@ -3,6 +3,7 @@ import logging
 
 import base64
 import os
+
 import zipfile
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
@@ -71,8 +72,8 @@ class Document(object):
 
     def sign(self):
         _logger.debug('Document 4 ')
-        cert = open(templateXML+'\CERTIFICADO_CLAVE_PRIVADA.pem').read()
-        privkey = open(templateXML+'\CERTIFICADO_CLAVE_PRIVADA.key').read()
+        cert = open(templateXML+ os.sep +'CERTIFICADO_CLAVE_PRIVADA.pem').read()
+        privkey = open(templateXML+ os.sep +'CERTIFICADO_CLAVE_PRIVADA.key').read()
         
         
         
