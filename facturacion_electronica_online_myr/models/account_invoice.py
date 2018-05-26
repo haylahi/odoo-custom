@@ -78,7 +78,7 @@ class account_invoice(models.Model):
         serie = serie[:4]
         #number_invoice = invoice.number
         #number_invoice = number_invoice[5:]
-        number_invoice = '00005883'
+        number_invoice = '5883'
         
         _logger.debug('SERA 0 >> %s  ', invoice.partner_id)
         _logger.debug('SERA 1 >> %s  ', invoice.partner_id.website)
@@ -97,6 +97,7 @@ class account_invoice(models.Model):
             #_logger.debug('SERA 34 >> %s  ', line.invoice_line_tax_ids.filtered(lambda   r: r.name.startswith('IGV')))
             _logger.debug('SERA 35 >> %s  ', tax.name)
             _logger.debug('SERA 36 >> %s  ', tax.amount)
+            _logger.debug('SERA 37 >> %s  ', cc)
             
             #_logger.debug('SERA 34 >> %s  ', tax.description)
             
