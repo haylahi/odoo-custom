@@ -86,6 +86,8 @@ class Document(object):
         #_logger.debug('Document 432104 '+ etree.tostring(root))
         #root = etree.fromstring(root) 
         signed_root = XMLSigner().sign(root, key=privkey, cert=cert)
+        
+        _logger.debug('Document 43210555555555 ' + etree.tostring(signed_root, encoding='ISO-8859-1'))
         #verified_data = XMLVerifier().verify(signed_root).signed_xml
         """
         
