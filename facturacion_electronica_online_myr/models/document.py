@@ -81,10 +81,10 @@ class Document(object):
         #data_to_sign = self._xml.encode('ISO-8859-1')
         #root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
         _logger.debug('Document 43210 ')
-        #root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
-        root = "<root>data</root>"
+        root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
+        #root = "<root>data</root>"
         #_logger.debug('Document 432104 '+ etree.tostring(root))
-        root = etree.fromstring(root) 
+        #root = etree.fromstring(root) 
         signed_root = XMLSigner().sign(root, key=privkey, cert=cert)
         verified_data = XMLVerifier().verify(signed_root).signed_xml
         """
