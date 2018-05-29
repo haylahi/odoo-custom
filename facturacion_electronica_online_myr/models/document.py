@@ -72,8 +72,8 @@ class Document(object):
 
     def sign(self):
         _logger.debug('Document 4 ')
-        cert = open(templateXML+ os.sep +'CERTIFICADO_CLAVE_PRIVADA.pem').read()
-        privkey = open(templateXML+ os.sep +'CERTIFICADO_CLAVE_PRIVADA.key').read()
+        cert = open(templateXML+ os.sep +'MYRCONSULTORIAENSISTEMAS.pem').read()
+        privkey = open(templateXML+ os.sep +'MYRCONSULTORIAENSISTEMAS.key').read()
         
         
         
