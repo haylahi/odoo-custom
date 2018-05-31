@@ -9,6 +9,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
 from jinja2 import FileSystemLoader, Environment
 from lxml import etree
+import xml.etree.ElementTree as ET
 from signxml import XMLSigner, XMLVerifier, methods
 from voluptuous import Schema, Required, All, Any, Length, ALLOW_EXTRA, Optional ,Invalid, MultipleInvalid
 from cStringIO import StringIO
@@ -72,41 +73,20 @@ class Document(object):
 
     def sign(self):
         _logger.debug('Document 4 ')
-        cert = open(templateXML+ os.sep +'MYRCONSULTORIAENSISTEMAS.pem').read()
-        privkey = open(templateXML+ os.sep +'MYRCONSULTORIAENSISTEMAS.key').read()
-        
-        
-        
-        #root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
-        #data_to_sign = self._xml.encode('ISO-8859-1')
-        #root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
-        _logger.debug('Document 43210 ')
+        cert = open(templateXML+ os.sep +'cert.pem').read()
+        privkey = open(templateXML+ os.sep +'key.pem').read()
         root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
-        #root = "<root>data</root>"
-        #_logger.debug('Document 432104 '+ etree.tostring(root))
-        #root = etree.fromstring(root) 
+        _logger.debug('Document 43210 ')
         signed_root = XMLSigner(method=methods.enveloped, signature_algorithm='rsa-sha1', digest_algorithm='sha1').sign(root, key=privkey, cert=cert)
-        
-        _logger.debug('Document 4321055555555512345Alicia ' + etree.tostring(signed_root, encoding='ISO-8859-1'))
-        #verified_data = XMLVerifier().verify(signed_root).signed_xml
-        """
-        
-        #signed_root = XMLSigner(root, digest_algorithm='sha1').sign(algorithm='rsa-sha1', key=key, cert=cert)
-        signed_root = XMLSigner(method=methods.enveloped, digest_algorithm='sha1').sign(root, key=privkey.encode('ascii'), cert=cert) 
-        
-        #XMLSigner(method=methods.enveloped, digest_algorithm='sha1').sign(doc, key=privkey.encode('ascii'), cert=cert)
-        
-        
-        
-        signed_root.xpath('//ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/ds:Signature',
-                          namespaces={'ext': 'urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2',
-                                      'ds': 'http://www.w3.org/2000/09/xmldsig#'})[0].attrib['Id'] = 'SignSUNAT'
-        
-        self._xml = etree.tostring(signed_root, encoding='ISO-8859-1')
-        
-        print (XMLVerifier().verify(signed_root)).signed_xml
-        """
-        
+
+	self._xml = etree.tostring(signed_root,encoding='ISO-8859-1')
+
+	#with open(self._xml, "rb") as fh:
+	#    cert = etree.parse(fh).find("//ds:X509Certificate").text
+
+	#assertion_data = XMLVerifier().verify(b64decode(signed_root), x509_cert=cert).signed_xml
+
+        _logger.debug('Document XML Lucho ' + self._xml)
         _logger.debug('Document 44444444 ')
 
     def writetofile(self, filename, filecontent):
@@ -129,8 +109,8 @@ class Document(object):
         encoded_content = base64.b64encode(self.in_memory_data.getvalue())
                              #20378890161-01-F933-5883
         self._zip_filename = '20378890161-01-F933-5883.zip'
+	_logger.debug('Document 77777777777777888 ' + encoded_content )
         self._response = self._client.sendBill(self._zip_filename,encoded_content)
-        
         _logger.debug('Document 77777777777777 ' + self._response )
 
     def process_response(self):

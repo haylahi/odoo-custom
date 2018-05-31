@@ -1,18 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-	xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1"
-	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
-	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-	xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2"
-	xmlns:ccts="urn:un:unece:uncefact:documentation:2"
-	xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
-	xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2"
-	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ext:UBLExtensions>
 		<ext:UBLExtension>
 			<ext:ExtensionContent>
-				<ds:Signature Id="placeholder"></ds:Signature>
+				<ds:Signature Id="SignSUNAT">
+					
+				<ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2006/12/xml-c14n11"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>hV19W2tdpO9si2iOPPiKly6zNtk=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>aJvfAjhLvwKwwhpopbzRhz4gMW7+wTnlaDeXzhbwoKFCwwVduDs6xMpRmE7MfWK7X75dWKbh6UCPfQBRjimoGrSkHkelwMR5AedNuHgbyQgkvcvHXNhtvr9YLaadlUQigFSOhMuP6LoHri+LniY90DI/dKpXwlCdZyw+lgrBFtv+YbjU4JsL8KEgRg+DNeGmEtXgoLdIG+SdqxtQsgwB/XUd3CwM8EJrCU+DP4Fm+hX2SwA4SGI2NC7uK83/fiKNgJz1rEElNJWzpNJ8DaE4Wmwpp58cv0c5Mdhza2GOzoAA3W977ImFEpgIRcM5atBdLcBSxL3mkCH/e7W3/QNTkw==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIEKDCCAxCgAwIBAgIJAKTco5bAsEpeMA0GCSqGSIb3DQEBCwUAMIGoMQswCQYD
+VQQGEwJQRTENMAsGA1UECAwETGltYTETMBEGA1UEBwwKQ2hvcnJpbGxvczEYMBYG
+A1UECgwPTVlSIENvbnN1bHRvcmlhMREwDwYDVQQLDAhTaXN0ZW1hczEeMBwGA1UE
+AwwVd3d3Lm15cmNvbnN1bHRpbmcubmV0MSgwJgYJKoZIhvcNAQkBFhlyaWNhcmRv
+LmxpdmVsbGlAZ21haWwuY29tMB4XDTE4MDUzMDIxMTUxNFoXDTE5MDUzMDIxMTUx
+NFowgagxCzAJBgNVBAYTAlBFMQ0wCwYDVQQIDARMaW1hMRMwEQYDVQQHDApDaG9y
+cmlsbG9zMRgwFgYDVQQKDA9NWVIgQ29uc3VsdG9yaWExETAPBgNVBAsMCFNpc3Rl
+bWFzMR4wHAYDVQQDDBV3d3cubXlyY29uc3VsdGluZy5uZXQxKDAmBgkqhkiG9w0B
+CQEWGXJpY2FyZG8ubGl2ZWxsaUBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQC/DCVXRkD1+1aoHLmCDTW1w+RlBjXr6K9uYtPb8xYD/Dwc
+bbnZphCoC4GebE9Y5AcisstVufzS/ud+TdsXi16fUNFw9XB/w9buaAavRPquXBMT
+KtIxmmqRz+lL3xoI+UDlN08UsC+jWLlVJnEIZ/UhmDoO/RVoE4FKYdawGfSp05pL
+bgBw1sipn/zQ/ln4Tcmerxz4gGQgiPVKAstT8L7BefQ6R5FfrlR2CLls/7E3xy0t
+ARzqM1fo09WaVeTOYEJ9nVQCHO8NOsXza6bGJ8j1iCi89TunrPHHBK3yVtOfmdDw
+4WIoDIzW1pD/FzO1p0IXnRFSeTG+3DrOsONO6lrHAgMBAAGjUzBRMB0GA1UdDgQW
+BBS6iW6QHahC2kZXgCJjm3rk0Xc3nTAfBgNVHSMEGDAWgBS6iW6QHahC2kZXgCJj
+m3rk0Xc3nTAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBHuxUO
+vy4RuJpOjLaEmdJoEXWvSVghUpXC6PSEimd9zkqecqtRq8h8w/WNVaANON4VyMNa
+UhyIw2tJMoeE7tXuUgbUWWVKhooDguUTmyr+Dcqo71cC3bzsuPDypF7dGjCdbq/Q
+pFO8G5ORXmeMBuBSqSiXn5FU0A5y2cL5NGSWlUC5V5siSqfGapv3LNNStXcCc5vB
+zRX0e1HFZjce6iLED2u8dy249kAJ8psKAdKpt9BKuvza7A4bnNApERKkTWerAfwE
+yr6YobhM18oQdRDQweEZcYMsLaGeglR+V0jBm65JRMs6lLYqEqT+VuvdxbvJiUrp
+yzeBI7dFGyzRxXjS
+</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature>
 			</ext:ExtensionContent>
 		</ext:UBLExtension>
 		<ext:UBLExtension>
@@ -25,7 +41,7 @@
 					</sac:AdditionalMonetaryTotal>
 					<sac:AdditionalProperty>
 						<cbc:ID>1000</cbc:ID>
-						<cbc:Value><![CDATA[NOVENTA Y NUEVE CON 80/100 SOLES]]></cbc:Value>
+						<cbc:Value>NOVENTA Y NUEVE CON 80/100 SOLES</cbc:Value>
 					</sac:AdditionalProperty>
 				</sac:AdditionalInformation>
 			</ext:ExtensionContent>
@@ -37,18 +53,34 @@
 	<cbc:IssueDate>2018-04-05</cbc:IssueDate>
 	<cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
 	<cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+	<cac:Signature>
+		<cbc:ID>SF933-5883</cbc:ID>
+		<cac:SignatoryParty>
+			<cac:PartyIdentification>
+				<cbc:ID>20378890161</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:PartyName>
+				<cbc:Name>SUNAT</cbc:Name>
+			</cac:PartyName>
+		</cac:SignatoryParty>
+		<cac:DigitalSignatureAttachment>
+			<cac:ExternalReference>
+				<cbc:URI>SF933-5883-180405142839</cbc:URI>
+			</cac:ExternalReference>
+		</cac:DigitalSignatureAttachment>
+	</cac:Signature>
 	<cac:AccountingSupplierParty>
 		<cbc:CustomerAssignedAccountID>20378890161
 		</cbc:CustomerAssignedAccountID>
 		<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
 		<cac:Party>
 			<cac:PartyName>
-				<cbc:Name><![CDATA[COOLBOX]]></cbc:Name>
+				<cbc:Name>COOLBOX</cbc:Name>
 			</cac:PartyName>
 			<cac:PostalAddress>
 				<cbc:ID>150120</cbc:ID>
-				<cbc:StreetName><![CDATA[AV SALAVERRY 3310]]></cbc:StreetName>
-				<cbc:CitySubdivisionName><![CDATA[]]>
+				<cbc:StreetName>AV SALAVERRY 3310</cbc:StreetName>
+				<cbc:CitySubdivisionName>
 				</cbc:CitySubdivisionName>
 				<cbc:CityName>LIMA</cbc:CityName>
 				<cbc:CountrySubentity>LIMA</cbc:CountrySubentity>
@@ -58,7 +90,7 @@
 				</cac:Country>
 			</cac:PostalAddress>
 			<cac:PartyLegalEntity>
-				<cbc:RegistrationName><![CDATA[RASH PERU S.A.C.]]></cbc:RegistrationName>
+				<cbc:RegistrationName>RASH PERU S.A.C.</cbc:RegistrationName>
 			</cac:PartyLegalEntity>
 		</cac:Party>
 	</cac:AccountingSupplierParty>
@@ -68,9 +100,9 @@
 		<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
 		<cac:Party>
 			<cac:PartyLegalEntity>
-				<cbc:RegistrationName><![CDATA[M Y R CONSULTORIA EN SISTEMAS S.A.C.]]></cbc:RegistrationName>
+				<cbc:RegistrationName>M Y R CONSULTORIA EN SISTEMAS S.A.C.</cbc:RegistrationName>
 				<cac:RegistrationAddress>
-					<cbc:StreetName><![CDATA[CAL.33 MZA. G11 LOTE. 26 URB.  LOS CEDROS DE VILLA  (AL FINAL DE ALAMEDA LOS HORIZONTES)  LIMA]]></cbc:StreetName>
+					<cbc:StreetName>CAL.33 MZA. G11 LOTE. 26 URB.  LOS CEDROS DE VILLA  (AL FINAL DE ALAMEDA LOS HORIZONTES)  LIMA</cbc:StreetName>
 					<cac:Country>
 						<cbc:IdentificationCode>PE</cbc:IdentificationCode>
 					</cac:Country>
@@ -135,8 +167,8 @@
 			</cac:TaxSubtotal>
 		</cac:TaxTotal>
 		<cac:Item>
-			<cbc:Description><![CDATA[PILAS ALCALINAS AAA PAQ 4]]></cbc:Description>
-			<cbc:Description><![CDATA[9.9]]></cbc:Description>
+			<cbc:Description>PILAS ALCALINAS AAA PAQ 4</cbc:Description>
+			<cbc:Description>9.9</cbc:Description>
 			<cac:SellersItemIdentification>
 				<cbc:ID>2302215</cbc:ID>
 			</cac:SellersItemIdentification>
@@ -181,8 +213,8 @@
 			</cac:TaxSubtotal>
 		</cac:TaxTotal>
 		<cac:Item>
-			<cbc:Description><![CDATA[MOUSE INALMBRICO CLICK SILENCIOSO MAXELL]]></cbc:Description>
-			<cbc:Description><![CDATA[89.9]]></cbc:Description>
+			<cbc:Description>MOUSE INALaMBRICO CLICK SILENCIOSO MAXELL</cbc:Description>
+			<cbc:Description>89.9</cbc:Description>
 			<cac:SellersItemIdentification>
 				<cbc:ID>347892</cbc:ID>
 			</cac:SellersItemIdentification>
