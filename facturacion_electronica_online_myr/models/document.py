@@ -72,8 +72,8 @@ class Document(object):
 
     def sign(self):
         _logger.debug('Document 4 ')
-        cert = open(templateXML+ os.sep +'cert.pem').read()
-        privkey = open(templateXML+ os.sep +'key.pem').read()
+        cert = open(templateXML+ os.sep +'myr.cer').read()
+        privkey = open(templateXML+ os.sep +'myr.key').read()
         root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
 	_logger.debug(root)
         signed_root = XMLSigner(method=methods.enveloped, signature_algorithm='rsa-sha1', digest_algorithm='sha1', c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315').sign(root, key=privkey, cert=cert)
