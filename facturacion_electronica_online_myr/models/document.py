@@ -21,7 +21,6 @@ from cryptography.hazmat.primitives.serialization import load_pem_private_key
 import OpenSSL
 from OpenSSL import crypto
 
-
 #import sys
 #reload(sys)
 #sys.setdefaultencoding('iso-8859-1')
@@ -76,18 +75,21 @@ class Document(object):
         cert = open(templateXML+ os.sep +'cert.pem').read()
         privkey = open(templateXML+ os.sep +'key.pem').read()
         root = etree.fromstring(self._xml.encode('ISO-8859-1'), parser=etree.XMLParser(encoding='ISO-8859-1'))
-        _logger.debug('Document 43210 ')
-        signed_root = XMLSigner(method=methods.enveloped, signature_algorithm='rsa-sha1', digest_algorithm='sha1').sign(root, key=privkey, cert=cert)
+	_logger.debug(root)
+        signed_root = XMLSigner(method=methods.enveloped, signature_algorithm='rsa-sha1', digest_algorithm='sha1', c14n_algorithm=u'http://www.w3.org/TR/2001/REC-xml-c14n-20010315').sign(root, key=privkey, cert=cert)
 
 	self._xml = etree.tostring(signed_root,encoding='ISO-8859-1')
 
 	#with open(self._xml, "rb") as fh:
-	#    cert = etree.parse(fh).find("//ds:X509Certificate").text
+	#xml_sign=b64decode(self._xml)
+	#cert = etree.fromstring(xml_sign).find('//ds:X509Certificate').text
 
-	#assertion_data = XMLVerifier().verify(b64decode(signed_root), x509_cert=cert).signed_xml
+	assertion_data = XMLVerifier().verify(signed_root,x509_cert=cert).signed_xml
+	_logger.debug(assertion_data)
 
-        _logger.debug('Document XML Lucho ' + self._xml)
-        _logger.debug('Document 44444444 ')
+        _logger.debug('Document XML Lucho ')
+	_logger.debug(self._xml)
+        #_logger.debug('Document 44444444 ')
 
     def writetofile(self, filename, filecontent):
         _logger.debug('Document 5 ')
@@ -112,6 +114,11 @@ class Document(object):
 	_logger.debug('Document 77777777777777888 ' + encoded_content )
         self._response = self._client.sendBill(self._zip_filename,encoded_content)
         _logger.debug('Document 77777777777777 ' + self._response )
+	
+	from zipfile import ZipFile
+	import io
+        _response = ZipFile(io.BytesIO(base64.b64decode(self._response)))
+	_response.extractall('/tmp/sunat_rpta')
 
     def process_response(self):
         _logger.debug('Document 8 ')
