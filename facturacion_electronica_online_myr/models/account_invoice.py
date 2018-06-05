@@ -207,10 +207,9 @@ class account_invoice(models.Model):
                 _data = self.generate_data_invoice(invoice)
                 doc = Invoice('20378890161', _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
+                _logger.debug('XML Firmado %s' , doc._xml)
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
-                self.process_respuesta_sunat(invoice,_cdr_sunat)
-                
-                
+                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
     
@@ -228,19 +227,33 @@ class account_invoice(models.Model):
         return str
     
     @api.multi
-    def process_respuesta_sunat(self, invoice, _cdr_sunat):
+    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
+        namefilersend = '20378890161-01-F933-5883.xml'
         namefilerpta = 'R-20378890161-01-F933-5883.zip'
         namefilerptaXML = 'R-20378890161-01-F933-5883.xml'
         strXML = ZipFile(io.BytesIO(base64.b64decode(_cdr_sunat)))
         data = strXML.read(namefilerptaXML)
         _logger.debug('CDR Sunat XML %s' , data)
+        
+        # RUTA ENVIO - ARCHIVO CDR
         invoice.x_file_factura_cdr = base64.encodestring(data)
         invoice.x_factura_binary_fname_cdr = namefilerptaXML
         invoice.x_cdr_digestvalue = self.buscaDigestValue(data,"DigestValue")
         invoice.x_cdr_description = self.buscaDigestValue(data,"Description")
         self.write({'x_factura_binary_fname_cdr': namefilerptaXML})       
+        
+        # RUTA ENVIO - ARCHIVO ZIP DE RESPUESTA CON CDR DE SUNAT
+        invoice.x_file_factura_zip = base64.encodestring(base64.b64decode(_cdr_sunat))
+        invoice.x_factura_binary_fname_zip = namefilerpta
+        self.write({'x_factura_binary_fname_zip': namefilerpta})
+        
+        # RUTA ENVIO - ARCHIVO ZIP FIRMADO ENVIADO A SUNAT
+        invoice.x_file_factura_xml_send = base64.encodestring(xml_firmado)
+        invoice.x_factura_binary_fname_xml_send = namefilersend
+        self.write({'x_factura_binary_fname_zip': namefilersend})
+                    
     
     
     @api.multi
