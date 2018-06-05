@@ -224,7 +224,7 @@ class account_invoice(models.Model):
                 _logger.debug('CDR Sunat XML %s' , data)
                 invoice.file_factura_cdr = base64.encodestring(data)
                 invoice.factura_binary_fname_cdr = namefilerptaXML
-                self.buscaDigestValue(data)
+                invoice.cdr_digestvalue = self.buscaDigestValue(data)
                 self.write({'factura_binary_fname_cdr': namefilerptaXML})
                 
         else:
