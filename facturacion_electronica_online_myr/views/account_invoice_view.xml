@@ -12,15 +12,19 @@
 			        <page string="Sunat" >
 			            <group name="group_top">
 	                        <group name="group_left" string="Envío de archivos">
-	                        	<button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/>
-	                        	<newline/>
+	                        	<!--
+	                        	<!button name="generate_sunat_files" type="object" string="Generar Archivos" class="oe_highlight"/-->
+	                        	<!--newline/>
+	                        	-->
 	                        	<field name="factura_binary_fname_xml_send" invisible="1"/>
 	                            <field name="file_factura_xml_send" nolabel="1" filename="factura_binary_fname_xml_send" readonly="1" string="Descargar" widget="binary" style="width:200%"/>
 								
 	                        </group>
 	                        <group name="group_right" string="Recepción de archivos">
+	                        	<!--
 	                        	<button name="load_sunat_files" type="object" string="Respuesta SUNAT" class="oe_highlight"/>
 	                        	<newline/>
+	                        	-->
 	                        	<field name="factura_binary_fname_zip" invisible="1"/>
 	                            <field name="file_factura_zip" nolabel="1" filename="factura_binary_fname_zip" readonly="1" string="Descargar zip" widget="binary" style="width:200%"/>
 	                            <newline/>
