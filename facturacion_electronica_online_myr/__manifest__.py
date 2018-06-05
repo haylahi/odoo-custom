@@ -24,7 +24,6 @@
     # always loaded
     'data': [
         'data/ir.config_parameter.xml',
-        'data/ir.ui_view.xml',
         'views/account_invoice_view.xml',
         #'security/access_rules.xml',
         #'views/views.xml',
