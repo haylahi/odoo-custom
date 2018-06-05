@@ -208,7 +208,7 @@ class account_invoice(models.Model):
                 doc = Invoice('20378890161', _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
-                self.process_respuesta_sunat(_cdr_sunat)
+                self.process_respuesta_sunat(invoice,_cdr_sunat)
                 
                 
         else:
@@ -228,7 +228,7 @@ class account_invoice(models.Model):
         return str
     
     @api.multi
-    def process_respuesta_sunat(self,_cdr_sunat):
+    def process_respuesta_sunat(self, invoice, _cdr_sunat):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
         namefilerpta = 'R-20378890161-01-F933-5883.zip'
@@ -236,7 +236,6 @@ class account_invoice(models.Model):
         strXML = ZipFile(io.BytesIO(base64.b64decode(_cdr_sunat)))
         data = strXML.read(namefilerptaXML)
         _logger.debug('CDR Sunat XML %s' , data)
-        self.process_respuesta_sunat()
         invoice.x_file_factura_cdr = base64.encodestring(data)
         invoice.x_factura_binary_fname_cdr = namefilerptaXML
         invoice.x_cdr_digestvalue = self.buscaDigestValue(data,"DigestValue")
