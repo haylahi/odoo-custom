@@ -1,0 +1,7 @@
+/target/
+.settings
+.project
+.classpath
+org.eclipse.core.resources.prefs
+/.settings/
+.pydevproject
