@@ -29,7 +29,7 @@ class Clientsunat(object):
         self._connect()
 
     def _connect(self):
-        #Produccionxx
+        #Produccionxxyyyyy
         #client = Client(url='https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService?wsdl',plugins=[MyPlugin()])
 
         #Pruebas

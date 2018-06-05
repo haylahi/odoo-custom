@@ -2,6 +2,6 @@
 .settings
 .project
 .classpath
-org.eclipse.core.resources.prefs
 /.settings/
 .pydevproject
+.org.eclipse.core.resources.prefs
