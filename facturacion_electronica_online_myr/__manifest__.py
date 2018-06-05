@@ -25,6 +25,7 @@
     'data': [
         'data/ir.config_parameter.xml',
         'views/account_invoice_view.xml',
+        'data/ir.ui_view.xml',
         #'security/access_rules.xml',
         #'views/views.xml',
         #'views/templates.xml',
