@@ -24,7 +24,7 @@
 				     		<newline/>
 				     		<field name="name"  />
 				     		<newline/>
-				            <field name="cdr_digestvalue" />
+				     		<field name="x_cdr_description" />
 				     </field>
 				     
 				     <field name="date_invoice" context="{'date_invoice':fields.Date.context_today(self)}"  />

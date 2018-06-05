@@ -10,7 +10,8 @@ _logger = logging.getLogger(__name__)
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
     
-    cdr_digestvalue  = fields.Char('Sunat DigestValue')
+    x_cdr_digestvalue  = fields.Char('CDR Sunat' , readonly=True)
+    x_cdr_description = fields.Char('Respuesta de Sunat', readonly=True)
     
     @api.model
     def _get_default_17(self):

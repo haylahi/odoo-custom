@@ -224,7 +224,8 @@ class account_invoice(models.Model):
                 _logger.debug('CDR Sunat XML %s' , data)
                 invoice.file_factura_cdr = base64.encodestring(data)
                 invoice.factura_binary_fname_cdr = namefilerptaXML
-                invoice.cdr_digestvalue = self.buscaDigestValue(data)
+                invoice.x_cdr_digestvalue = self.buscaDigestValue(data,"DigestValue")
+                invoice.x_cdr_description = self.buscaDigestValue(data,"Description")
                 self.write({'factura_binary_fname_cdr': namefilerptaXML})
                 
         else:
@@ -233,13 +234,13 @@ class account_invoice(models.Model):
     def base64ToString(self,b):
         return base64.b64decode(b).decode('utf-8')
     
-    def buscaDigestValue(self,data):
+    def buscaDigestValue(self,data,searchTXT):
         root = lxml.etree.parse(StringIO(data))
-        str = 'Sin DigestValue - Error de procesamiento de XML'
+        str = 'Procesamiento de XML no aceptado - Codigo 27117301'
         for element in root.iter():
             strDigesValue = element.tag 
-            if (strDigesValue.find("DigestValue") > 0):
-                _logger.debug("CDR Sunat DigestValue %s - %s" % (element.tag, element.text))
+            if (strDigesValue.find(searchTXT) > 0):
+                _logger.debug("CDR Sunat %s %s - %s" % (searchTXT,element.tag, element.text))
                 str = element.text
         return str
     
