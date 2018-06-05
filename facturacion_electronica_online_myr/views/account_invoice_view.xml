@@ -35,6 +35,7 @@
 	                        
                         </group>
                         <group name="group_bottom">
+                        	<field name="x_cdr_description" />
                         	<field name="x_cdr_digestvalue" />
                         </group>
 			        </page>
