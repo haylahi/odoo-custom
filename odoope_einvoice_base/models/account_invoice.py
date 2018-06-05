@@ -10,6 +10,8 @@ _logger = logging.getLogger(__name__)
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
     
+    cdr_digestvalue  = fields.Char('Sunat DigestValue')
+    
     @api.model
     def _get_default_17(self):
         res = self.env['einvoice.catalog.17'].search([('code','=','01')])

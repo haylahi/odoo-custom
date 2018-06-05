@@ -16,6 +16,9 @@
 				     		<field name="x_code_catalog_07" options="{'no_create': True}" />
 				     		<newline/>
 				            <field name="journal_id" />
+				            <newline/>
+				            <field name="cdr_digestvalue" />
+				            
 				            
 				     </field>
 				     <field name="payment_term_id" position="after">
