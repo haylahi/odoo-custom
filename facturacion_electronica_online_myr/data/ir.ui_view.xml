@@ -9,6 +9,7 @@
             <!--
             <xpath expr="//div[1]" position="after">
             -->
+            <!--
             <xpath expr="//div[@class='page']" position="after">
                 <p t-if="o.x_cdr_description">
 	                <strong>Respuesta de Sunat:</strong>
@@ -19,6 +20,7 @@
 	                <span t-field="o.x_cdr_digestvalue"/>
 	            </p>
             </xpath>
+            -->
             <xpath expr="//td/strong[text()='Total']" position="after">
                 <p t-if="o.x_cdr_description">
 	                <strong>Respuesta de Sunat:</strong>
