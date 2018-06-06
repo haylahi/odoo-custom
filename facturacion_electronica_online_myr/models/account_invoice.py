@@ -178,19 +178,36 @@ class account_invoice(models.Model):
         amount_tax = '%.2f' % invoice.amount_tax
         amount_total = '%.2f' % invoice.amount_total
         
-        supplier.append({
+        
+        supplier =  {
+                        'ruc':self.company_id.vat,
+                        'registration_name':self.company_id.name,
+                        'commercial_name':self.company_id.company_registry,
+                        'address': {
+                            'ubigeo': self.company_id.zip,
+                            'street': self.company_id.street,
+                            'district': self.company_id.street2,
+                            'provincia': self.company_id.city,
+                            'departamento': self.company_id.state_id.name,
+                            'country_code': self.company_id.country_id.code
+                        }
+                     }
+        
+        customer =  {
                         'numDocUsuario':numDocUsuario,
                         'tipDocUsuario':tipDocUsuario,
-                        'rznSocialUsuario':rznSocialUsuario,
-                     })
+                        'rznSocialUsuario':rznSocialUsuario
+                     }
         
         datos = {
-                'supplier' : supplier,
+               'issue_date': datetime.today().strftime('%Y-%m-%d'),
+               'supplier' : supplier,
+               'customer' : customer,
                'correlative':number_invoice, 
                'serial':serie, 
                'voucher_type':cc, 
                'fecEmision': invoice.date_invoice,
-               'tipMoneda':tipMoneda,
+               'currency':tipMoneda,
                'mtoOperGravadas': amount_untaxed,
                'mtoOperInafectas':'0.00',
                'mtoOperExoneradas':'0.00',
