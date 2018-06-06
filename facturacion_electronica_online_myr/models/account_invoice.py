@@ -178,14 +178,18 @@ class account_invoice(models.Model):
         amount_tax = '%.2f' % invoice.amount_tax
         amount_total = '%.2f' % invoice.amount_total
         
+        supplier.append({
+                        'numDocUsuario':numDocUsuario,
+                        'tipDocUsuario':tipDocUsuario,
+                        'rznSocialUsuario':rznSocialUsuario,
+                     })
+        
         datos = {
+                'supplier' : supplier,
                'correlative':number_invoice, 
                'serial':serie, 
                'voucher_type':cc, 
                'fecEmision': invoice.date_invoice,
-               'tipDocUsuario':tipDocUsuario,
-               'numDocUsuario':numDocUsuario,
-               'rznSocialUsuario':rznSocialUsuario,
                'tipMoneda':tipMoneda,
                'mtoOperGravadas': amount_untaxed,
                'mtoOperInafectas':'0.00',
