@@ -32,18 +32,18 @@
 	</ext:UBLExtensions>
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>1.0</cbc:CustomizationID>
-	<cbc:ID>F933-5883</cbc:ID>
-	<cbc:IssueDate>2018-04-05</cbc:IssueDate>
-	<cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
-	<cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+	<cbc:ID>{{ voucher_number }}</cbc:ID>
+	<cbc:IssueDate>{{ issue_date }}</cbc:IssueDate>
+	<cbc:InvoiceTypeCode>{{ voucher_type }}</cbc:InvoiceTypeCode>
+	<cbc:DocumentCurrencyCode>{{ currency }}</cbc:DocumentCurrencyCode>
 <cac:Signature>
   <cbc:ID>IDSignKG</cbc:ID>
   <cac:SignatoryParty>
   <cac:PartyIdentification>
-  <cbc:ID>20378890161</cbc:ID>
+  <cbc:ID>{{ supplier.ruc }}</cbc:ID>
   </cac:PartyIdentification>
   <cac:PartyName>
-  <cbc:Name>COOLBOX</cbc:Name>
+  <cbc:Name><![CDATA[{{ supplier.commercial_name }}]]></cbc:Name>
   </cac:PartyName>
   </cac:SignatoryParty>
   <cac:DigitalSignatureAttachment>
@@ -53,35 +53,35 @@
   </cac:DigitalSignatureAttachment>
 </cac:Signature>
 	<cac:AccountingSupplierParty>
-		<cbc:CustomerAssignedAccountID>20378890161</cbc:CustomerAssignedAccountID>
+		<cbc:CustomerAssignedAccountID>{{ supplier.ruc }}</cbc:CustomerAssignedAccountID>
 		<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
 		<cac:Party>
 			<cac:PartyName>
-				<cbc:Name><![CDATA[COOLBOX]]></cbc:Name>
+				<cbc:Name><![CDATA[{{ supplier.commercial_name }}]]></cbc:Name>
 			</cac:PartyName>
 			<cac:PostalAddress>
-				<cbc:ID>150120</cbc:ID>
-				<cbc:StreetName><![CDATA[AV SALAVERRY 3310]]></cbc:StreetName>
+				<cbc:ID>{{ supplier.address.ubigeo }}</cbc:ID>
+				<cbc:StreetName><![CDATA[{{ supplier.address.street }}]]></cbc:StreetName>
 				<cbc:CitySubdivisionName><![CDATA[]]>
 				</cbc:CitySubdivisionName>
-				<cbc:CityName>LIMA</cbc:CityName>
-				<cbc:CountrySubentity>LIMA</cbc:CountrySubentity>
-				<cbc:District>MAGDALENA DEL MAR</cbc:District>
+				<cbc:CityName><![CDATA[{{ supplier.address.city }}]]></cbc:CityName>
+				<cbc:CountrySubentity><![CDATA[{{ supplier.address.provincia }}]]></cbc:CountrySubentity>
+				<cbc:District><![CDATA[{{ supplier.address.district }}]]></cbc:District>
 				<cac:Country>
-					<cbc:IdentificationCode>PE</cbc:IdentificationCode>
+					<cbc:IdentificationCode>{{ supplier.address.country_code }}</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
 			<cac:PartyLegalEntity>
-				<cbc:RegistrationName><![CDATA[RASH PERU S.A.C.]]></cbc:RegistrationName>
+				<cbc:RegistrationName><![CDATA[{{ supplier.registration_name }}]]></cbc:RegistrationName>
 			</cac:PartyLegalEntity>
 		</cac:Party>
 	</cac:AccountingSupplierParty>
 	<cac:AccountingCustomerParty>
-		<cbc:CustomerAssignedAccountID>20566473926</cbc:CustomerAssignedAccountID>
-		<cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+		<cbc:CustomerAssignedAccountID>{{ customer.numDocUsuario }}</cbc:CustomerAssignedAccountID>
+		<cbc:AdditionalAccountID>{{ customer.tipDocUsuario }}</cbc:AdditionalAccountID>
 		<cac:Party>
 			<cac:PartyLegalEntity>
-				<cbc:RegistrationName><![CDATA[M Y R CONSULTORIA EN SISTEMAS S.A.C.]]></cbc:RegistrationName>
+				<cbc:RegistrationName><![CDATA[{{ customer.rznSocialUsuario }}]]></cbc:RegistrationName>
 				<cac:RegistrationAddress>
 					<cbc:StreetName><![CDATA[CAL.33 MZA. G11 LOTE. 26 URB.  LOS CEDROS DE VILLA  (AL FINAL DE ALAMEDA LOS HORIZONTES)  LIMA]]></cbc:StreetName>
 					<cac:Country>
@@ -92,9 +92,9 @@
 		</cac:Party>
 	</cac:AccountingCustomerParty>
 	<cac:TaxTotal>
-		<cbc:TaxAmount currencyID="PEN">15.22</cbc:TaxAmount>
+		<cbc:TaxAmount currencyID="{{ currency }}">{{mtoIGV}}</cbc:TaxAmount>
 		<cac:TaxSubtotal>
-			<cbc:TaxAmount currencyID="PEN">15.22</cbc:TaxAmount>
+			<cbc:TaxAmount currencyID="{{ currency }}">{{mtoIGV}}</cbc:TaxAmount>
 			<cac:TaxCategory>
 				<cac:TaxScheme>
 					<cbc:ID>1000</cbc:ID>
@@ -105,29 +105,30 @@
 		</cac:TaxSubtotal>
 	</cac:TaxTotal>
 	<cac:LegalMonetaryTotal>
-		<cbc:LineExtensionAmount currencyID="PEN">84.58</cbc:LineExtensionAmount>
-		<cbc:TaxExclusiveAmount currencyID="PEN">15.22</cbc:TaxExclusiveAmount>
-		<cbc:PayableAmount currencyID="PEN">99.8</cbc:PayableAmount>
+		<cbc:LineExtensionAmount currencyID="{{ currency }}">{{mtoOperGravadas}}</cbc:LineExtensionAmount>
+		<cbc:TaxExclusiveAmount currencyID="{{ currency }}">{{mtoIGV}}</cbc:TaxExclusiveAmount>
+		<cbc:PayableAmount currencyID="{{ currency }}">{{mtoImpVenta}}</cbc:PayableAmount>
 	</cac:LegalMonetaryTotal>
+	{% for line in lines %}
 	<cac:InvoiceLine>
-		<cbc:ID>1</cbc:ID>
-		<cbc:InvoicedQuantity unitCode="NIU">1</cbc:InvoicedQuantity>
-		<cbc:LineExtensionAmount currencyID="PEN">8.39</cbc:LineExtensionAmount>
+		<cbc:ID>{{ loop.index }}</cbc:ID>
+		<cbc:InvoicedQuantity unitCode="{{ line.unit_code }}">{{ line.quantity }}</cbc:InvoicedQuantity>
+		<cbc:LineExtensionAmount currencyID="{{ currency }}">{{ line.mtoPrecioVentaItem }}</cbc:LineExtensionAmount>
 		<cac:PricingReference>
 			<cac:AlternativeConditionPrice>
-				<cbc:PriceAmount currencyID="PEN">9.9</cbc:PriceAmount>
+				<cbc:PriceAmount currencyID="PEN">{{ line.price }}</cbc:PriceAmount>
 				<cbc:PriceTypeCode>01</cbc:PriceTypeCode>
 			</cac:AlternativeConditionPrice>
 		</cac:PricingReference>
 		<cac:AllowanceCharge>
 			<cbc:ChargeIndicator>true</cbc:ChargeIndicator>
-			<cbc:Amount currencyID="PEN">0.0</cbc:Amount>
+			<cbc:Amount currencyID="{{ currency }}">0.0</cbc:Amount>
 		</cac:AllowanceCharge>
 		<cac:TaxTotal>
-			<cbc:TaxAmount currencyID="PEN">1.51</cbc:TaxAmount>
+			<cbc:TaxAmount currencyID="{{ currency }}">{{ line.mtoIgvItem }}</cbc:TaxAmount>
 			<cac:TaxSubtotal>
-				<cbc:TaxableAmount currencyID="PEN">8.39</cbc:TaxableAmount>
-				<cbc:TaxAmount currencyID="PEN">1.51</cbc:TaxAmount>
+				<cbc:TaxableAmount currencyID="{{ currency }}">{{ line.mtoPrecioVentaItem }}</cbc:TaxableAmount>
+				<cbc:TaxAmount currencyID="{{ currency }}">{{ line.mtoIgvItem }}</cbc:TaxAmount>
 				<cbc:Percent>18.0</cbc:Percent>
 				<cac:TaxCategory>
 					<cbc:ID>IGV</cbc:ID>
@@ -142,58 +143,14 @@
 			</cac:TaxSubtotal>
 		</cac:TaxTotal>
 		<cac:Item>
-			<cbc:Description><![CDATA[PILAS ALCALINAS AAA PAQ 4]]></cbc:Description>
-			<cbc:Description><![CDATA[9.9]]></cbc:Description>
+			<cbc:Description><![CDATA[{{ line.description }}]]></cbc:Description>
 			<cac:SellersItemIdentification>
-				<cbc:ID>2302215</cbc:ID>
+				<cbc:ID><![CDATA[{{ line.codProducto }}]]></cbc:ID>
 			</cac:SellersItemIdentification>
 		</cac:Item>
 		<cac:Price>
-			<cbc:PriceAmount currencyID="PEN">8.39</cbc:PriceAmount>
+			<cbc:PriceAmount currencyID="{{ currency }}">{{ line.price }}</cbc:PriceAmount>
 		</cac:Price>
 	</cac:InvoiceLine>
-	<cac:InvoiceLine>
-		<cbc:ID>2</cbc:ID>
-		<cbc:InvoicedQuantity unitCode="NIU">1</cbc:InvoicedQuantity>
-		<cbc:LineExtensionAmount currencyID="PEN">76.19</cbc:LineExtensionAmount>
-		<cac:PricingReference>
-			<cac:AlternativeConditionPrice>
-				<cbc:PriceAmount currencyID="PEN">89.9</cbc:PriceAmount>
-				<cbc:PriceTypeCode>01</cbc:PriceTypeCode>
-			</cac:AlternativeConditionPrice>
-		</cac:PricingReference>
-		<cac:AllowanceCharge>
-			<cbc:ChargeIndicator>true</cbc:ChargeIndicator>
-			<cbc:Amount currencyID="PEN">0.0</cbc:Amount>
-		</cac:AllowanceCharge>
-		<cac:TaxTotal>
-			<cbc:TaxAmount currencyID="PEN">13.71</cbc:TaxAmount>
-			<cac:TaxSubtotal>
-				<cbc:TaxableAmount currencyID="PEN">76.19
-				</cbc:TaxableAmount>
-				<cbc:TaxAmount currencyID="PEN">13.71</cbc:TaxAmount>
-				<cbc:Percent>18.0</cbc:Percent>
-				<cac:TaxCategory>
-					<cbc:ID>IGV</cbc:ID>
-					<cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
-					<cbc:TierRange>03</cbc:TierRange>
-					<cac:TaxScheme>
-						<cbc:ID>1000</cbc:ID>
-						<cbc:Name>IGV</cbc:Name>
-						<cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
-					</cac:TaxScheme>
-				</cac:TaxCategory>
-			</cac:TaxSubtotal>
-		</cac:TaxTotal>
-		<cac:Item>
-			<cbc:Description><![CDATA[MOUSE INALMBRICO CLICK SILENCIOSO MAXELL]]></cbc:Description>
-			<cbc:Description><![CDATA[89.9]]></cbc:Description>
-			<cac:SellersItemIdentification>
-				<cbc:ID>347892</cbc:ID>
-			</cac:SellersItemIdentification>
-		</cac:Item>
-		<cac:Price>
-			<cbc:PriceAmount currencyID="PEN">76.19</cbc:PriceAmount>
-		</cac:Price>
-	</cac:InvoiceLine>
+	{% endfor %}
 </Invoice>

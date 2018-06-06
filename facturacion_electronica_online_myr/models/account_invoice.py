@@ -136,17 +136,17 @@ class account_invoice(models.Model):
             
             
             #Precio de venta unitario por item
-            format_mtoPrecioVentaItem = '%.10f' % mtoPrecioVentaItem  
+            format_mtoPrecioVentaItem = '%.2f' % mtoPrecioVentaItem  
             
             #Precio de venta por item
             format_mtoValorVentaItem = '%.2f' % (mtoPrecioVentaItem + mtoIgvItem)  
             
             lines.append({
-                        'codUnidadMedida': codUnidadMedida,
-                        'ctdUnidadItem':quantity,
+                        'unit_code': codUnidadMedida,
+                        'quantity':quantity,
                         'codProducto':line.product_id.default_code,
-                        'desItem':desItem,
-                        'mtoValorUnitario':price_unit,
+                        'description':desItem,
+                        'price':price_unit,
                         'mtoIgvItem': format_mtoIgvItem,
                         'tipAfeIGV':tipAfeIGV,
                         'tipSisISC':tipSisISC,
@@ -213,7 +213,7 @@ class account_invoice(models.Model):
                'mtoOperExoneradas':'0.00',
                'mtoIGV': amount_tax,
                'mtoImpVenta': amount_total,
-               'lstItems': lines
+               'lines': lines
               
             }
                 
@@ -227,7 +227,7 @@ class account_invoice(models.Model):
             for invoice in self:
                 _data = self.generate_data_invoice(invoice)
                 _logger.debug('JSON a ser enviado para convertir a XML %s' , _data)
-                doc = Invoice('20378890161', _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
+                doc = Invoice(self.company_id.vat, _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
                 _logger.debug('XML Firmado %s' , doc._xml)
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
@@ -252,9 +252,9 @@ class account_invoice(models.Model):
     def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
-        namefilersend = '20378890161-01-F933-5883.xml'
-        namefilerpta = 'R-20378890161-01-F933-5883.zip'
-        namefilerptaXML = 'R-20378890161-01-F933-5883.xml'
+        namefilersend = self.company_id.vat +'-01-F933-5883.xml'
+        namefilerpta = 'R-'+self.company_id.vat+'-01-F933-5883.zip'
+        namefilerptaXML = 'R-'+self.company_id.vat+'-01-F933-5883.xml'
         strXML = ZipFile(io.BytesIO(base64.b64decode(_cdr_sunat)))
         data = strXML.read(namefilerptaXML)
         _logger.debug('CDR Sunat XML %s' , data)
