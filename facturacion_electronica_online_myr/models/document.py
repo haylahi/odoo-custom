@@ -129,7 +129,7 @@ class Document(object):
 class Invoice(Document):
 
 
-    template_name = 'invoice.xml'
+    template_name = 'template_invoice.xml'
     voucher_type = ''
 
     def validate(self):

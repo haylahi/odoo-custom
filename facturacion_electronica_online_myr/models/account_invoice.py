@@ -205,6 +205,7 @@ class account_invoice(models.Model):
         if ruta_sunat!='':
             for invoice in self:
                 _data = self.generate_data_invoice(invoice)
+                _logger.debug('JSON a ser enviado para convertir a XML %s' , _data)
                 doc = Invoice('20378890161', _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
                 _logger.debug('XML Firmado %s' , doc._xml)
