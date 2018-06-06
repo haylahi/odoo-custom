@@ -31,6 +31,19 @@
 	                <span t-field="o.x_cdr_digestvalue"/>
 	            </p>
             </xpath>
+            
+            <!-- important payment information -->
+            <xpath expr="//p[@t-if='o.comment']" position="after">
+                <p>
+	                <strong>Respuesta de Sunat:</strong>
+	                <span t-field="o.x_cdr_description"/>
+	            </p>
+	            <p>
+	                <strong>Constancia de recepción Sunat:</strong>
+	                <span t-field="o.x_cdr_digestvalue"/>
+	            </p>
+            </xpath>
+            
         </template>
     </data>
 </openerp>
