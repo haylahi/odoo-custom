@@ -252,7 +252,7 @@ class account_invoice(models.Model):
         # RUTA ENVIO - ARCHIVO ZIP FIRMADO ENVIADO A SUNAT
         invoice.x_file_factura_xml_send = base64.encodestring(xml_firmado)
         invoice.x_factura_binary_fname_xml_send = namefilersend
-        self.write({'x_factura_binary_fname_zip': namefilersend})
+        self.write({'x_factura_binary_fname_xml_send': namefilersend})
                     
     
     
