@@ -21,6 +21,7 @@
 	            </p>
             </xpath>
             -->
+            <!--
             <xpath expr="//td/strong[text()='Total']" position="after">
                 <p t-if="o.x_cdr_description">
 	                <strong>Respuesta de Sunat:</strong>
@@ -31,7 +32,7 @@
 	                <span t-field="o.x_cdr_digestvalue"/>
 	            </p>
             </xpath>
-            
+            -->
             <xpath expr="//div[@class='row mt32 mb32']" position="after">
                 <p>
 	                <strong>Respuesta de Sunat:</strong>
