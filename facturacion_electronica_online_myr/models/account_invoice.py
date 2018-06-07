@@ -73,8 +73,8 @@ class account_invoice(models.Model):
         res_partner = self.env['res.partner'].browse(invoice.partner_id)
         num_ruc_company = invoice.company_id.vat
         cc = str(invoice.journal_id.sequence_id.code)
-        serie = str(invoice.journal_id.sequence_id.prefix)
-        #serie = serie[:4]
+        serie = (invoice.journal_id.sequence_id.prefix)
+        serie = serie[:4]
         number_invoice = str(invoice.number)
         #number_invoice = number_invoice[5:]
         #number_invoice = '5883'
@@ -228,8 +228,8 @@ class account_invoice(models.Model):
                 _data = self.generate_data_invoice(invoice)
                 
                 cc = str(invoice.journal_id.sequence_id.code)
-                serie = str(invoice.journal_id.sequence_id.prefix)
-                #serie = serie[:4]
+                serie = (invoice.journal_id.sequence_id.prefix)
+                serie = serie[:4]
                 number_invoice = str(invoice.number)
                 #number_invoice = number_invoice[5:]
                 
@@ -241,9 +241,10 @@ class account_invoice(models.Model):
                 _cdr_sunat = doc.process()
                 _logger.debug('XML Firmado %s' , doc._xml)
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
+                _logger.debug('Nombre Archivo %s' , doc._document_name)
                
                 
-                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml,serie,number_invoice,cc)
+                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml,doc._document_name)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
     
@@ -261,12 +262,16 @@ class account_invoice(models.Model):
         return str
     
     @api.multi
-    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado,serial,correlative,voucher_type):
+    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado,serial,_document_name):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
-        namefilersend = self.company_id.vat +'-01-F933-5883.xml'
-        namefilerpta = 'R-'+self.company_id.vat+'-01-F933-5883.zip'
-        namefilerptaXML = 'R-'+self.company_id.vat+'-01-F933-5883.xml'
+        
+        #namefilersend = self.company_id.vat +'-01-F933-5883.xml'
+        namefilersend = _document_name +'.xml'
+        #namefilerpta = 'R-'+self.company_id.vat+'-01-F933-5883.zip'
+        namefilerpta = 'R-'+_document_name+'.zip'
+        #namefilerptaXML = 'R-'+self.company_id.vat+'-01-F933-5883.xml'
+        namefilerptaXML = 'R-'+_document_name+'.xml'
         strXML = ZipFile(io.BytesIO(base64.b64decode(_cdr_sunat)))
         data = strXML.read(namefilerptaXML)
         _logger.debug('CDR Sunat XML %s' , data)
