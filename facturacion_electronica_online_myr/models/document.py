@@ -103,7 +103,7 @@ class Document(object):
         encoded_content = base64.b64encode(self.in_memory_data.getvalue())
                              #20378890161-01-F933-5883
         #self._zip_filename = self._ruc +'-01-F933-5883.zip'
-        self._zip_filename = self._document_name
+        self._zip_filename = self._document_name+'.zip'
         _logger.debug('Archivo zipado en base64 enviado a Sunat : ' + encoded_content )
         self._response = self._client.sendBill(self._zip_filename,encoded_content)
         _logger.debug('Respuesta de Sunat en base64 : ' + self._response )
