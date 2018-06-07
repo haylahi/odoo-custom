@@ -75,9 +75,9 @@ class account_invoice(models.Model):
         cc = str(invoice.journal_id.sequence_id.code)
         serie = invoice.journal_id.sequence_id.prefix
         serie = serie[:4]
-        #number_invoice = invoice.number
-        #number_invoice = number_invoice[5:]
-        number_invoice = '5883'
+        number_invoice = invoice.number
+        number_invoice = number_invoice[5:]
+        #number_invoice = '5883'
         
         _logger.debug('SERA 0 >> %s  ', invoice.partner_id)
         _logger.debug('SERA 1 >> %s  ', invoice.partner_id.website)
@@ -231,6 +231,10 @@ class account_invoice(models.Model):
                 _cdr_sunat = doc.process()
                 _logger.debug('XML Firmado %s' , doc._xml)
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
+                _logger.debug('Invoice Serial %s' , doc._data['serial'])
+                _logger.debug('Invoice correlative %s' , doc._data['correlative'])
+                _logger.debug('Invoice voucher_type %s' , doc._data['voucher_type'])
+                
                 self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
@@ -288,6 +292,7 @@ class account_invoice(models.Model):
     @api.multi
     def invoice_validate(self):
         _logger.debug('Invoice a Validar %s with ', self._name)
+        self.generate_xml_invoice_10()
         res = super(account_invoice, self).invoice_validate()
         return res
             

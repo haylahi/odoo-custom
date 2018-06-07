@@ -132,7 +132,7 @@
 				<cbc:Percent>18.0</cbc:Percent>
 				<cac:TaxCategory>
 					<cbc:ID>IGV</cbc:ID>
-					<cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+					<cbc:TaxExemptionReasonCode>{{ line.tipAfeIGV }}</cbc:TaxExemptionReasonCode>
 					<cbc:TierRange>03</cbc:TierRange>
 					<cac:TaxScheme>
 						<cbc:ID>1000</cbc:ID>
