@@ -226,16 +226,17 @@ class account_invoice(models.Model):
         if ruta_sunat!='':
             for invoice in self:
                 _data = self.generate_data_invoice(invoice)
+                _logger.debug('Invoice Serial %s' , _data['serial'])
+                _logger.debug('Invoice correlative %s' , _data['correlative'])
+                _logger.debug('Invoice voucher type %s' , _data['voucher_type'])
                 _logger.debug('JSON a ser enviado para convertir a XML %s' , _data)
                 doc = Invoice(self.company_id.vat, _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
                 _logger.debug('XML Firmado %s' , doc._xml)
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
-                _logger.debug('Invoice Serial %s' , _data['serial'])
-                _logger.debug('Invoice correlative %s' , _data['correlative'])
-                _logger.debug('Invoice voucher type %s' , _data['voucher_type'])
+               
                 
-                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml)
+                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml,serial,correlative,voucher_type)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
     
@@ -253,7 +254,7 @@ class account_invoice(models.Model):
         return str
     
     @api.multi
-    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado):
+    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado,serial,correlative,voucher_type):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
         namefilersend = self.company_id.vat +'-01-F933-5883.xml'
