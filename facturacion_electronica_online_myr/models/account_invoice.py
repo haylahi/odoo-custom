@@ -226,9 +226,16 @@ class account_invoice(models.Model):
         if ruta_sunat!='':
             for invoice in self:
                 _data = self.generate_data_invoice(invoice)
-                _logger.debug('Invoice Serial %s' , _data['serial'])
-                _logger.debug('Invoice correlative %s' , _data['correlative'])
-                _logger.debug('Invoice voucher type %s' , _data['voucher_type'])
+                
+                cc = str(invoice.journal_id.sequence_id.code)
+                serie = invoice.journal_id.sequence_id.prefix
+                serie = serie[:4]
+                number_invoice = invoice.number
+                number_invoice = number_invoice[5:]
+                
+                _logger.debug('Invoice Serial %s' , serie)
+                _logger.debug('Invoice correlative %s' , number_invoice)
+                _logger.debug('Invoice voucher type %s' , cc)
                 _logger.debug('JSON a ser enviado para convertir a XML %s' , _data)
                 doc = Invoice(self.company_id.vat, _data , Clientsunat('20378890161MODDATOS','MODDATOS', True))
                 _cdr_sunat = doc.process()
@@ -236,7 +243,7 @@ class account_invoice(models.Model):
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
                
                 
-                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml,serial,correlative,voucher_type)
+                self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml,serie,number_invoice,cc)
         else:
             _logger.debug('Verifique el parametro de sistema de la ruta de archivos de Sunat !')
     
