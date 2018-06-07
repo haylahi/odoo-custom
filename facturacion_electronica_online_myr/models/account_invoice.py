@@ -263,7 +263,7 @@ class account_invoice(models.Model):
         return str
     
     @api.multi
-    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado,serial,_document_name):
+    def process_respuesta_sunat(self, invoice, _cdr_sunat, xml_firmado,_document_name):
         #Graba CDR en base de datos
         #namefilerpta = num_ruc_company + "-" + cc + "-" + serie + "-" + number_invoice +".zip"
         
