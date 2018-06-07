@@ -233,7 +233,7 @@ class account_invoice(models.Model):
                 _logger.debug('CDR Sunat %s' , _cdr_sunat)
                 _logger.debug('Invoice Serial %s' , doc._data['serial'])
                 _logger.debug('Invoice correlative %s' , doc._data['correlative'])
-                _logger.debug('Invoice voucher_type %s' , doc._data['voucher_type'])
+                _logger.debug('Invoice voucher type %s' , doc._data['voucher_type'])
                 
                 self.process_respuesta_sunat(invoice,_cdr_sunat, doc._xml)
         else:
