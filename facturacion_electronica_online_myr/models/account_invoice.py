@@ -228,10 +228,10 @@ class account_invoice(models.Model):
                 _data = self.generate_data_invoice(invoice)
                 
                 cc = str(invoice.journal_id.sequence_id.code)
-                serie = invoice.journal_id.sequence_id.prefix
-                serie = serie[:4]
-                number_invoice = invoice.number
-                number_invoice = number_invoice[5:]
+                serie = str(invoice.journal_id.sequence_id.prefix)
+                #serie = serie[:4]
+                number_invoice = str(invoice.number)
+                #number_invoice = number_invoice[5:]
                 
                 _logger.debug('Invoice Serial %s' , serie)
                 _logger.debug('Invoice correlative %s' , number_invoice)
