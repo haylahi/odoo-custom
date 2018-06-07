@@ -73,10 +73,10 @@ class account_invoice(models.Model):
         res_partner = self.env['res.partner'].browse(invoice.partner_id)
         num_ruc_company = invoice.company_id.vat
         cc = str(invoice.journal_id.sequence_id.code)
-        serie = invoice.journal_id.sequence_id.prefix
-        serie = serie[:4]
-        number_invoice = invoice.number
-        number_invoice = number_invoice[5:]
+        serie = str(invoice.journal_id.sequence_id.prefix)
+        #serie = serie[:4]
+        number_invoice = str(invoice.number)
+        #number_invoice = number_invoice[5:]
         #number_invoice = '5883'
         
         _logger.debug('SERA 0 >> %s  ', invoice.partner_id)
