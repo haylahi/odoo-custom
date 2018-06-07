@@ -73,8 +73,9 @@ class account_invoice(models.Model):
         res_partner = self.env['res.partner'].browse(invoice.partner_id)
         num_ruc_company = invoice.company_id.vat
         cc = str(invoice.journal_id.sequence_id.code)
-        serie = (invoice.journal_id.sequence_id.prefix)
-        serie = serie[:4]
+        #serie = invoice.journal_id.sequence_id.prefix
+        serie = invoice.journal_id.code
+        #serie = serie[:4]
         number_invoice = str(invoice.number)
         #number_invoice = number_invoice[5:]
         #number_invoice = '5883'
@@ -228,8 +229,8 @@ class account_invoice(models.Model):
                 _data = self.generate_data_invoice(invoice)
                 
                 cc = str(invoice.journal_id.sequence_id.code)
-                serie = (invoice.journal_id.sequence_id.prefix)
-                serie = serie[:4]
+                serie = invoice.journal_id.code
+                #serie = serie[:4]
                 number_invoice = str(invoice.number)
                 #number_invoice = number_invoice[5:]
                 
