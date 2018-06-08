@@ -77,7 +77,9 @@ class account_invoice(models.Model):
         #serie = invoice.journal_id.code
         serie = serie[:4]
         number_invoice = str(invoice.number)
-        number_invoice = number_invoice[5:]
+        pos = number_invoice.rfind('/') + 1
+        extracnumberinvoice = number_invoice[pos:] 
+        number_invoice = extracnumberinvoice
                 
         _logger.debug('SERA 0 >> %s  ', invoice.partner_id)
         _logger.debug('SERA 1 >> %s  ', invoice.partner_id.website)
@@ -232,7 +234,9 @@ class account_invoice(models.Model):
                 #serie = invoice.journal_id.code
                 serie = serie[:4]
                 number_invoice = str(invoice.number)
-                number_invoice = number_invoice[5:]
+                pos = number_invoice.rfind('/') + 1
+                extracnumberinvoice = number_invoice[pos:] 
+                number_invoice = extracnumberinvoice
                 
                 _logger.debug('Invoice Serial %s' , serie)
                 _logger.debug('Invoice correlative %s' , number_invoice)
@@ -299,7 +303,7 @@ class account_invoice(models.Model):
     @api.multi
     def action_invoice_draft(self):
         _logger.debug('Invoice a Borrador %s with ', self._name)
-        self.generate_xml_invoice_10()
+        #self.generate_xml_invoice_10()
         res = super(account_invoice, self).action_invoice_draft()
         return res
     
