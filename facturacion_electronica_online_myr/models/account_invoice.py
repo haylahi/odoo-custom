@@ -164,7 +164,13 @@ class account_invoice(models.Model):
         tipDocUsuario = invoice.partner_id.catalog_06_id.code
         
         #Num documento de usuario
-        numDocUsuario = invoice.partner_id.vat[:15]
+        _logger.debug('RUC con Error %s' , invoice.partner_id.vat)
+        if (invoice.partner_id.vat == False) :
+            #numDocUsuario = "00000000000"
+            msg = 'Verifique el número de RUC o DNI del cliente a cual le esta emitiendo el documento fiscal.'
+            raise ValidationError(_(msg))
+        else :
+            numDocUsuario = invoice.partner_id.vat[:15]
         
         #Razon Social
         if (invoice.partner_id.registration_name != False):
